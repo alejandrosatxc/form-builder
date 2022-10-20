@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <div className="grid grid-cols-3 gap-x-6 h-screen place-items-center bg-gray-400 p-6">
       <Head>
-        <title>Create Next App</title>
+        <title>Form Builder ✨🦆</title>
         <meta name="description" content="Created by Alejandro Zapien" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
