@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useDrop } from 'react-dnd'
 import { ItemTypes } from './Constants'
 import Name from './Name'
@@ -20,7 +21,7 @@ const style = {
 
 const Dustbin = ({ items }) => {
 
-  const form = [
+  const [formComponents, setFormComponents] = useState([
     {
       type: "name"
     },
@@ -32,11 +33,14 @@ const Dustbin = ({ items }) => {
     },
     {
       type: "radio"
+    },
+    {
+      type: "name"
     }
-  ]
-
+  ])
 
   const [{ canDrop, isOver }, drop] = useDrop(() => ({
+
     accept: ItemTypes.INPUT,
     drop: () => ({ name: 'Dustbin' }),
     collect: (monitor) => ({
@@ -58,8 +62,8 @@ const Dustbin = ({ items }) => {
     <div ref={drop} style={{ ...style, backgroundColor }} data-testid="dustbin">
       {isActive ? 'Release to drop' : 'Drag a box here'}
       <div>
-        {form.map((field) => {
-          switch(field.type) {
+        {formComponents.map((component) => {
+          switch(component.type) {
             case 'name'     : return <Name />       ;
             case 'contact'  : return <Contact />    ;
             case 'checkbox' : return <Checkboxes /> ;
