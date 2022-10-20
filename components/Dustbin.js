@@ -4,8 +4,9 @@ import Name from './Name'
 import Contact from './Contact'
 import Checkboxes from './Checkboxes'
 import Radio from './Radio'
+
 const style = {
-  height: '75%',
+  height: '90%',
   width: '100%',
   marginRight: '1.5rem',
   marginBottom: '1.5rem',
@@ -63,8 +64,7 @@ const Dustbin = ({ items }) => {
             case 'contact'  : return <Contact />    ;
             case 'checkbox' : return <Checkboxes /> ;
             case 'radio'    : return <Radio />      ;
-            default:
-              break;
+            default         : break                 ;
           }
         })}
       </div>
