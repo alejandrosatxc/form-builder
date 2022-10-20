@@ -2,7 +2,7 @@ import FormComponent from "./FormComponent"
 const Checkboxes = () => {
 
     return (
-        <FormComponent name="Checkboxes Input" type="checkboxes">
+        <FormComponent name="Checkboxes Input" type="checkbox">
             <h3 className="text-black text-xl text-left ">Checkboxes</h3>
             <input className="text-black" type="checkbox" id="c_html" name="fav_language" value="HTML"></input>
             <label className="text-black" for="c_html">HTML</label>

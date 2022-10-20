@@ -21,28 +21,19 @@ const style = {
 
 const Dustbin = ({ items }) => {
 
-  const [formComponents, setFormComponents] = useState([
-    {
-      type: "name"
-    },
-    {
-      type: "contact"
-    },
-    {
-      type: "checkbox"
-    },
-    {
-      type: "radio"
-    },
-    {
-      type: "name"
-    }
-  ])
+  const [formComponents, setFormComponents] = useState([])
+
+  const addItem = (item) => {
+    setFormComponents(item)
+  }
 
   const [{ canDrop, isOver }, drop] = useDrop(() => ({
 
     accept: ItemTypes.INPUT,
-    drop: () => ({ name: 'Dustbin' }),
+    drop: (item, monitor) => {
+      addItem(formComponents => [...formComponents, item]) //Set formComponents array to include what it did before, and new item
+      return { name: 'Dustbin' }
+    },
     collect: (monitor) => ({
       isOver: monitor.isOver(),
       canDrop: monitor.canDrop(),
