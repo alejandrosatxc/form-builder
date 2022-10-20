@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { useDrop } from 'react-dnd'
-import { ItemTypes } from './Constants'
-import Name from './Name'
-import Contact from './Contact'
-import Checkboxes from './Checkboxes'
-import Radio from './Radio'
+import { ItemTypes } from './FormComponents/Constants'
+import Name from './FormComponents/Name'
+import Contact from './FormComponents/Contact'
+import Checkboxes from './FormComponents/Checkboxes'
+import Radio from './FormComponents/Radio'
 
 const style = {
   height: '90%',

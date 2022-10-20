@@ -1,7 +1,7 @@
 import { ItemTypes } from './Constants'
 import { useDrag } from 'react-dnd'
 
-const FormComponent = ({ name, children }) => {
+const FormComponent = ({ name, type, children }) => {
 
     const [{ isDragging }, drag] = useDrag(() => ({
         type: ItemTypes.INPUT,

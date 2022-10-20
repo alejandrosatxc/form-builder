@@ -1,7 +1,7 @@
-import Name from "./Name"
-import Contact from "./Contact"
-import Radio from "./Radio"
-import Checkboxes from "./Checkboxes"
+import Name from "./FormComponents/Name"
+import Contact from "./FormComponents/Contact"
+import Radio from "./FormComponents/Radio"
+import Checkboxes from "./FormComponents/Checkboxes"
 
 const FieldsTray = () => {
     return (

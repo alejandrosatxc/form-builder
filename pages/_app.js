@@ -1,5 +1,5 @@
 import '../styles/globals.css'
-import Layout from '../components/layout'
+import Layout from '../components/layout/layout'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 
