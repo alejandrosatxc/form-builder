@@ -3,11 +3,11 @@ const Contact = () => {
 
     return (
         <FormComponent name="Email Input">
-            <h3 className="text-xl text-left ">Contact</h3>
-            <label>Email:</label>
-            <input className="border-2" type="text"></input>
-            <label>Phone:</label>
-            <input className="border-2" type="text"></input>
+            <h3 className="text-black text-xl text-left ">Contact</h3>
+            <label className="text-black ">Email:</label>
+            <input className="text-black border-2" type="text"></input>
+            <label className="text-black ">Phone:</label>
+            <input className="text-black border-2" type="text"></input>
         </FormComponent>
     )
 }

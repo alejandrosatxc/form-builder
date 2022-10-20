@@ -3,11 +3,11 @@ const Name = () => {
 
     return (
         <FormComponent name="Name Input">
-            <h3 className="text-xl text-left ">Name</h3>
-            <label>First:</label>
-            <input className="border-2" type="text"></input>
-            <label>Last:</label>
-            <input className="border-2" type="text"></input>
+            <h3 className="text-black text-xl text-left ">Name</h3>
+            <label className="text-black">First:</label>
+            <input className="text-black border-2" type="text"></input>
+            <label className="text-black">Last:</label>
+            <input className="text-black border-2" type="text"></input>
         </FormComponent>
     )
 }
