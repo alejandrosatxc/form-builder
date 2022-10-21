@@ -30,7 +30,7 @@ const Dustbin = ({ formComponents, setFormComponents }) => {
     drop: (item, monitor) => {
       addItem(formComponents => [...formComponents, item]) //Set formComponents array to include what it did before, and new item
       return { name: 'Dustbin' }
-    },  
+    },
     collect: (monitor) => ({
       isOver: monitor.isOver(),
       canDrop: monitor.canDrop(),
@@ -51,12 +51,12 @@ const Dustbin = ({ formComponents, setFormComponents }) => {
       {isActive ? 'Release to drop' : 'Drag a box here'}
       <div>
         {formComponents.map((component) => {
-          switch(component.type) {
-            case 'name'     : return <Name />       ;
-            case 'contact'  : return <Contact />    ;
-            case 'checkbox' : return <Checkboxes /> ;
-            case 'radio'    : return <Radio />      ;
-            default         : break                 ;
+          switch (component.type) {
+            case 'name': return <Name />;
+            case 'contact': return <Contact />;
+            case 'checkbox': return <Checkboxes />;
+            case 'radio': return <Radio />;
+            default: break;
           }
         })}
       </div>
