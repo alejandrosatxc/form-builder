@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { useDrop } from 'react-dnd'
 import { ItemTypes } from './FormComponents/Constants'
 import Name from './FormComponents/Name'
@@ -19,9 +18,7 @@ const style = {
   float: 'left',
 }
 
-const Dustbin = ({ items }) => {
-
-  const [formComponents, setFormComponents] = useState([])
+const Dustbin = ({ formComponents, setFormComponents }) => {
 
   const addItem = (item) => {
     setFormComponents(item)
@@ -33,7 +30,7 @@ const Dustbin = ({ items }) => {
     drop: (item, monitor) => {
       addItem(formComponents => [...formComponents, item]) //Set formComponents array to include what it did before, and new item
       return { name: 'Dustbin' }
-    },
+    },  
     collect: (monitor) => ({
       isOver: monitor.isOver(),
       canDrop: monitor.canDrop(),

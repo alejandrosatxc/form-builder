@@ -12,12 +12,25 @@ const style = {
     lineHeight: 'normal',
     float: 'left',
   }
-const Trashcan = () => {
+const Trashcan = ({formComponents, setFormComponents}) => {
+    //TODO solve item removal
+    const removeItem = (item) => {
+      const array = [...formComponents]
+      for(var i = 0; i < array.length; i++) {
+        if(array[i].type === item.type) {
+          array.splice(i, 1)
+        }
+      }
+      setFormComponents(array)
+    }
 
     const [{ canDrop, isOver }, drop] = useDrop(() => ({
 
         accept: ItemTypes.INPUT,
-        drop: () => ({ name: 'Dustbin' }),
+        drop: (item, monitor) => {
+          removeItem(item)
+          return { name: 'Trashcan' }
+        },
         collect: (monitor) => ({
             isOver: monitor.isOver(),
             canDrop: monitor.canDrop(),
