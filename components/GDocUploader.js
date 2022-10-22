@@ -2,7 +2,7 @@ const GDocUploader = () => {
 
     return (
         <div className="col-span-3 flex flex-col justify-center items-center bg-white rounded-xl shadow-xl h-1/2 w-3/4">
-            <label className="h-8 mx-auto" for="url">Enter an Google Doc URL:</label>
+            <label className="h-8 mx-auto" htmlFor="url">Enter an Google Doc URL:</label>
             <input className="border-2 my-4 mx-auto" type="url" name="url" id="url"
                 placeholder="https://example.com"
                 pattern="https://.*" size="30"
