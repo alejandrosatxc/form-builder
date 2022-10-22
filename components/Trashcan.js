@@ -22,7 +22,7 @@ const Trashcan = ({ formComponents, setFormComponents }) => {
 
     accept: ItemTypes.INPUT,
     drop: (item, monitor) => {
-      removeItem(formComponents => formComponents.filter(component => component.type !== item.type))
+      removeItem(formComponents => formComponents.filter(component => component.id !== item.id))
       return { name: 'Trashcan' }
     },
     collect: (monitor) => ({

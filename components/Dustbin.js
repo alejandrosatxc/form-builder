@@ -1,5 +1,6 @@
 import { useDrop } from 'react-dnd'
 import { ItemTypes } from './FormComponents/Constants'
+import { useId } from 'react'
 import Name from './FormComponents/Name'
 import Contact from './FormComponents/Contact'
 import Checkboxes from './FormComponents/Checkboxes'
@@ -19,6 +20,8 @@ const style = {
 }
 
 const Dustbin = ({ formComponents, setFormComponents }) => {
+
+  const id = useId()
 
   const addItem = (item) => {
     setFormComponents(item)
@@ -51,6 +54,7 @@ const Dustbin = ({ formComponents, setFormComponents }) => {
       {isActive ? 'Release to drop' : 'Drag a box here'}
       <div>
         {formComponents.map((component) => {
+          
           switch (component.type) {
             case 'name': return <Name />;
             case 'contact': return <Contact />;

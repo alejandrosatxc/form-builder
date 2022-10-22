@@ -1,12 +1,13 @@
 import FormComponent from "./FormComponent"
 import { useId } from "react"
 
-const Checkboxes = () => {
+const Checkboxes = ({id}) => {
 
-    const id = useId()
+    // const id = useId()
+    if(!id) {const id = useId()}
 
     return (
-        <FormComponent name="Checkboxes Input" type="checkbox">
+        <FormComponent name="Checkboxes Input" type="checkbox" id={id}>
             <h3 className="text-black text-xl text-left ">Checkboxes</h3>
             <input className="text-black" type="checkbox" id={id + '-c_html'} name="fav_language" value="HTML"></input>
             <label className="text-black" htmlFor={id + '-c_html'}>HTML</label>

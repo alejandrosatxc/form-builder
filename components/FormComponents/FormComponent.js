@@ -1,11 +1,14 @@
 import { ItemTypes } from './Constants'
 import { useDrag } from 'react-dnd'
+import { useId } from 'react'
 
-const FormComponent = ({ name, type, children }) => {
+const FormComponent = ({ name, type, id, children }) => {
+    
+    if(!id) {const id = useId()}
 
     const [{ isDragging }, drag] = useDrag(() => ({
         type: ItemTypes.INPUT,
-        item: { name, type },
+        item: { name, type, id },
         end: (item, monitor) => {
             const dropResult = monitor.getDropResult()
             // if (item && dropResult) {
@@ -24,6 +27,7 @@ const FormComponent = ({ name, type, children }) => {
             style={{
                 opacity: isDragging ? 0.5 : 1
             }}
+            id={id}
         >
             {children}
         </div>
