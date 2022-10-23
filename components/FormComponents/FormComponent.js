@@ -1,10 +1,21 @@
 import { ItemTypes } from './Constants'
 import { useDrag } from 'react-dnd'
-import { useId } from 'react'
+import Name from "./Name"
+import Contact from "./Contact"
+import Radio from "./Radio"
+import Checkboxes from "./Checkboxes"
 
-const FormComponent = ({ name, type, id, children }) => {
+const FormComponent = ({ name, type, id }) => {
+
+    var component;
     
-    if(!id) {const id = useId()}
+    switch (type) {
+        case 'name':  component = <Name name={name} type={type} id={id}/>; break;
+        case 'contact': component = <Contact name={name} type={type} id={id}/>; break;
+        case 'checkbox': component = <Checkboxes name={name} type={type} id={id}/>; break;
+        case 'radio': component = <Radio name={name} type={type} id={id}/>; break;
+        default: break;
+    }
 
     const [{ isDragging }, drag] = useDrag(() => ({
         type: ItemTypes.INPUT,
@@ -29,7 +40,7 @@ const FormComponent = ({ name, type, id, children }) => {
             }}
             id={id}
         >
-            {children}
+            {component}
         </div>
     )
 }

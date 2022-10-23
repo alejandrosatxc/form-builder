@@ -1,10 +1,7 @@
 import { useDrop } from 'react-dnd'
 import { ItemTypes } from './FormComponents/Constants'
 import { useId } from 'react'
-import Name from './FormComponents/Name'
-import Contact from './FormComponents/Contact'
-import Checkboxes from './FormComponents/Checkboxes'
-import Radio from './FormComponents/Radio'
+import FormComponent from './FormComponents/FormComponent'
 
 const style = {
   height: '90%',
@@ -21,7 +18,18 @@ const style = {
 
 const Dustbin = ({ formComponents, setFormComponents }) => {
 
-  const id = useId()
+  // const id = useId()
+  const generateId = () => {
+    const len = 10;
+    const id = ''
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+    const charslen = chars.length
+    for(var i = 0; i < len; i++) {
+      id += chars.charAt(Math.floor(Math.random() * charslen))
+    }
+
+    return id
+  }
 
   const addItem = (item) => {
     setFormComponents(item)
@@ -30,7 +38,8 @@ const Dustbin = ({ formComponents, setFormComponents }) => {
   const [{ canDrop, isOver }, drop] = useDrop(() => ({
 
     accept: ItemTypes.INPUT,
-    drop: (item, monitor) => {
+    drop: (item, monitor, id) => {
+      item.id = generateId()
       addItem(formComponents => [...formComponents, item]) //Set formComponents array to include what it did before, and new item
       return { name: 'Dustbin' }
     },
@@ -54,14 +63,7 @@ const Dustbin = ({ formComponents, setFormComponents }) => {
       {isActive ? 'Release to drop' : 'Drag a box here'}
       <div>
         {formComponents.map((component) => {
-          
-          switch (component.type) {
-            case 'name': return <Name />;
-            case 'contact': return <Contact />;
-            case 'checkbox': return <Checkboxes />;
-            case 'radio': return <Radio />;
-            default: break;
-          }
+          return <FormComponent name={component.name} type={component.type} id={component.id}/>
         })}
       </div>
     </div>
