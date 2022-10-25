@@ -38,10 +38,14 @@ const Dustbin = ({ formComponents, setFormComponents }) => {
   const [{ canDrop, isOver }, drop] = useDrop(() => ({
 
     accept: ItemTypes.INPUT,
-    drop: (item, monitor, id) => {
-      item.id = generateId()
-      addItem(formComponents => [...formComponents, item]) //Set formComponents array to include what it did before, and new item
-      return { name: 'Dustbin' }
+    drop: (item, monitor) => {
+
+      var id = generateId()
+      
+      //Create a new object to represent the dropped component
+      const newComponent = {id : id, name: item.name, type: item.type}
+      addItem((formComponents) => [...formComponents, newComponent]) //Set formComponents array to include what it did before, and new item
+      return { name: 'Dustbin' } //Return this object to the dropped component.
     },
     collect: (monitor) => ({
       isOver: monitor.isOver(),
