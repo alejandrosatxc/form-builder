@@ -66,8 +66,8 @@ const Dustbin = ({ formComponents, setFormComponents }) => {
     <div ref={drop} style={{ ...style, backgroundColor }} data-testid="dustbin">
       {isActive ? 'Release to drop' : 'Drag a box here'}
       <ul>
-        {formComponents.map((component) => {
-          return <li key={generateId()}><FormComponent name={component.name} type={component.type} id={component.id}/></li>
+        {formComponents.map((component, key) => {
+          return <FormComponent name={component.name} type={component.type} id={component.id} />
         })}
       </ul>
     </div>

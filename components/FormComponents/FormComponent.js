@@ -1,14 +1,15 @@
 import { ItemTypes } from './Constants'
 import { useDrag } from 'react-dnd'
+import { useId } from 'react'
 import Name from "./Name"
 import Contact from "./Contact"
 import Radio from "./Radio"
 import Checkboxes from "./Checkboxes"
 
-const FormComponent = ({ name, type, id }) => {
+const FormComponent = ({ name, type, id}) => {
 
     var component;
-    
+
     switch (type) {
         case 'name':  component = <Name name={name} type={type} id={id}/>; break;
         case 'contact': component = <Contact name={name} type={type} id={id}/>; break;
@@ -32,16 +33,17 @@ const FormComponent = ({ name, type, id }) => {
     }))
 
     return (
-        <div
-            className="bg-white h-auto2 w-auto my-2 border-2 rounded-xl p-2"
+        <li
+            className="bg-white h-auto w-auto my-2 border-2 rounded-xl p-2"
             ref={drag}
             style={{
                 opacity: isDragging ? 0.5 : 1
             }}
             id={id}
+            // key = {myKey}
         >
             {component}
-        </div>
+        </li>
     )
 }
 
