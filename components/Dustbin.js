@@ -59,7 +59,7 @@ const Dustbin = ({ formComponents, setFormComponents }) => {
   if (isActive) {
     backgroundColor = 'darkgreen'
   } else if (canDrop) {
-    backgroundColor = 'darkkhaki'
+    backgroundColor = 'darkkhaki' 
   }
 
   return (
@@ -67,7 +67,7 @@ const Dustbin = ({ formComponents, setFormComponents }) => {
       {isActive ? 'Release to drop' : 'Drag a box here'}
       <ul>
         {formComponents.map((component, key) => {
-          return <FormComponent name={component.name} type={component.type} id={component.id} />
+          return <FormComponent key={key} name={component.name} type={component.type} id={component.id} />
         })}
       </ul>
     </div>

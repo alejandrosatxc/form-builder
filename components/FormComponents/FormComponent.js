@@ -6,7 +6,7 @@ import Contact from "./Contact"
 import Radio from "./Radio"
 import Checkboxes from "./Checkboxes"
 
-const FormComponent = ({ name, type, id}) => {
+const FormComponent = ({ name, type, id, myKey}) => {
 
     var component;
 
@@ -42,6 +42,7 @@ const FormComponent = ({ name, type, id}) => {
             id={id}
             // key = {myKey}
         >
+            <span className="text-black">{id + ' ' + myKey}</span>
             {component}
         </li>
     )
