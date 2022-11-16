@@ -1,12 +1,15 @@
 import { ItemTypes } from './Constants'
 import { useDrag } from 'react-dnd'
-import { useId } from 'react'
+import { useId, useState } from 'react'
 import Name from "./Name"
 import Contact from "./Contact"
 import Radio from "./Radio"
 import Checkboxes from "./Checkboxes"
 
 const FormComponent = ({ name, type, id, myKey}) => {
+
+    //Identified bug, componentId is changing whenever a component is sent to the trash
+    const [componentId, setComponentId] = useState(id)
 
     var component;
 
@@ -42,7 +45,7 @@ const FormComponent = ({ name, type, id, myKey}) => {
             id={id}
             // key = {myKey}
         >
-            <span className="text-black">{id + ' ' + myKey}</span>
+            <span className="text-black">{componentId + ' ' + myKey}</span>
             {component}
         </li>
     )
