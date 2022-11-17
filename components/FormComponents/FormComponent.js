@@ -6,18 +6,15 @@ import Contact from "./Contact"
 import Radio from "./Radio"
 import Checkboxes from "./Checkboxes"
 
-const FormComponent = ({ name, type, id, myKey}) => {
-
-    //Identified bug, componentId is changing whenever a component is sent to the trash
-    const [componentId, setComponentId] = useState(id)
+const FormComponent = ({ name, type, id}) => {
 
     var component;
 
     switch (type) {
-        case 'name':  component = <Name name={name} type={type} id={id}/>; break;
-        case 'contact': component = <Contact name={name} type={type} id={id}/>; break;
-        case 'checkbox': component = <Checkboxes name={name} type={type} id={id}/>; break;
-        case 'radio': component = <Radio name={name} type={type} id={id}/>; break;
+        case 'name':  component = <Name name={name} type={type}/>; break;
+        case 'contact': component = <Contact name={name} type={type}/>; break;
+        case 'checkbox': component = <Checkboxes name={name} type={type}/>; break;
+        case 'radio': component = <Radio name={name} type={type}/>; break;
         default: break;
     }
 
@@ -42,10 +39,8 @@ const FormComponent = ({ name, type, id, myKey}) => {
             style={{
                 opacity: isDragging ? 0.5 : 1
             }}
-            id={id}
-            // key = {myKey}
         >
-            <span className="text-black">{componentId + ' ' + myKey}</span>
+            <span className="text-black">{id}</span>
             {component}
         </li>
     )

@@ -22,7 +22,7 @@ const Trashcan = ({ formComponents, setFormComponents }) => {
 
     accept: ItemTypes.INPUT,
     drop: (item, monitor) => {
-      alert(`You dropped \n${JSON.stringify(item)}`)
+      //alert(`You dropped \n${JSON.stringify(item)}`)
       removeItem(formComponents => formComponents.filter(component => component.id !== item.id))
       return { name: 'Trashcan' }
     },
