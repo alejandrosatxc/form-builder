@@ -21,7 +21,7 @@ const Dustbin = ({ formComponents, setFormComponents }) => {
   // const id = useId()
   const generateId = () => {
     const len = 10;
-    const id = ''
+    var id = ''
     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
     const charslen = chars.length
     for(var i = 0; i < len; i++) {
