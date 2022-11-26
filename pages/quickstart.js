@@ -6,14 +6,14 @@ const quickstart = () => {
         return (
             <>
                 Signed in as {session.user.email} <br />
-                <button onClick={() => signOut()}>Sign out</button>
+                <button className="bg-slate-200 rounded p-2" onClick={() => signOut()}>Sign out</button>
             </>
         )
     }
     return (
         <>
             Not signed in <br />
-            <button onClick={() => signIn()}>Sign in</button>
+            <button className="bg-slate-200 rounded p-2" onClick={() => signIn()}>Sign in</button>
         </>
     )
 
