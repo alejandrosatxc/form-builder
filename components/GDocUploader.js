@@ -1,5 +1,6 @@
 import { useSession, signIn, signOut } from "next-auth/react"
 import { useRef } from "react"
+import { readStructuralElements } from '../lib/getGdocText'
 
 const GDocUploader = () => {
     const { data: session } = useSession()
@@ -23,8 +24,21 @@ const GDocUploader = () => {
             console.log(res)
             return res.json()
         })
-        .then(data => {
-            console.log(data)
+        .then(doc => {
+            console.log(doc)
+            var headerContent = ''
+            var footerContent = ''
+            var bodyContent = readStructuralElements(doc.body.content)
+            for(var footer in doc.footers) {
+                footerContent += readStructuralElements(doc.footers[footer].content)
+            }
+            for(var header in doc.headers) {
+                //console.log(readStructuralElements(doc.headers[header].content))
+                headerContent += readStructuralElements(doc.headers[header].content)
+            }
+            console.log("Header content: " + headerContent)
+            console.log("Footer content: " + footerContent)
+            console.log("Body content: " + bodyContent)
         })
         .catch(err => {
             console.log(err)
