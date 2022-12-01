@@ -41,9 +41,20 @@ const GDocUploader = () => {
             var re = /\{{([^}]+)\}}/g
             var text = headerContent + footerContent + bodyContent
             var matches = [...text.matchAll(re)]
+            var matchesData = {
+                matches : [],
+                uniqueMatches : [], 
+            }
+            var field = ''
             matches.forEach(match => {
-                console.log(match[0])
+                //remove {{}} from field name
+                field = match[0].replace('{{', '').replace('}}', '')
+                matchesData.matches.push(field)
             })
+            //This gets all unique values in an array by changing a random array into a Set object, (which
+            //only has unique values), then changes the Set back to an array (and it only contains unique values)
+            matchesData.uniqueMatches = [...new Set(matchesData.matches)]
+            console.log(matchesData)
             
         })
         .catch(err => {
