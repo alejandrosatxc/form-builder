@@ -1,6 +1,6 @@
 import { useSession, signIn, signOut } from "next-auth/react"
 import { useRef } from "react"
-import { readStructuralElements } from '../lib/getGdocText'
+import { readStructuralElements, extractFields } from '../lib/getGdocText'
 
 const GDocUploader = () => {
     const { data: session } = useSession()
@@ -26,36 +26,7 @@ const GDocUploader = () => {
         })
         .then(doc => {
             console.log(doc)
-            var headerContent = ''
-            var footerContent = ''
-            var bodyContent = readStructuralElements(doc.body.content)
-            for(var footer in doc.footers) {
-                footerContent += readStructuralElements(doc.footers[footer].content)
-            }
-            for(var header in doc.headers) {
-                //console.log(readStructuralElements(doc.headers[header].content))
-                headerContent += readStructuralElements(doc.headers[header].content)
-            }
-
-            //Match all {{}} fields in a template
-            var re = /\{{([^}]+)\}}/g
-            var text = headerContent + footerContent + bodyContent
-            var matches = [...text.matchAll(re)]
-            var matchesData = {
-                matches : [],
-                uniqueMatches : [], 
-            }
-            var field = ''
-            matches.forEach(match => {
-                //remove {{}} from field name
-                field = match[0].replace('{{', '').replace('}}', '')
-                matchesData.matches.push(field)
-            })
-            //This gets all unique values in an array by changing a random array into a Set object, (which
-            //only has unique values), then changes the Set back to an array (and it only contains unique values)
-            matchesData.uniqueMatches = [...new Set(matchesData.matches)]
-            console.log(matchesData)
-            
+            extractFields(doc)            
         })
         .catch(err => {
             console.log(err)
