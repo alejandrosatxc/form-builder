@@ -12,8 +12,8 @@ const GDocUploader = () => {
         var baseURL = 'https://docs.googleapis.com/v1/documents/'
         var userInput = inputRef.current.value
         var documentId = regex.exec(userInput)
-        console.log(documentId[1])
-        console.log(baseURL + documentId[1])
+        //console.log(documentId[1])
+        //console.log(baseURL + documentId[1])
         fetch(baseURL + documentId[1],{
             method: 'GET',
             headers: new Headers ({
@@ -36,9 +36,15 @@ const GDocUploader = () => {
                 //console.log(readStructuralElements(doc.headers[header].content))
                 headerContent += readStructuralElements(doc.headers[header].content)
             }
-            console.log("Header content: " + headerContent)
-            console.log("Footer content: " + footerContent)
-            console.log("Body content: " + bodyContent)
+
+            //Match all {{}} fields in a template
+            var re = /\{{([^}]+)\}}/g
+            var text = headerContent + footerContent + bodyContent
+            var matches = [...text.matchAll(re)]
+            matches.forEach(match => {
+                console.log(match[0])
+            })
+            
         })
         .catch(err => {
             console.log(err)
