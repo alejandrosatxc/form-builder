@@ -1,19 +1,18 @@
 import { useSession, signIn, signOut } from "next-auth/react"
 import { useRef } from "react"
-import { readStructuralElements, extractFields } from '../lib/getGdocText'
+import { extractFields } from '../lib/getGdocText'
 
-const GDocUploader = () => {
+const GDocUploader = ({setFormFields}) => {
     const { data: session } = useSession()
     const inputRef = useRef(null)
 
     const handleGdocSubmit = () => {
-        console.log(session)
+        //console.log(session)
         const regex = /\/document\/d\/([a-zA-Z0-9-_]+)/
         var baseURL = 'https://docs.googleapis.com/v1/documents/'
         var userInput = inputRef.current.value
         var documentId = regex.exec(userInput)
-        //console.log(documentId[1])
-        //console.log(baseURL + documentId[1])
+
         fetch(baseURL + documentId[1],{
             method: 'GET',
             headers: new Headers ({
@@ -26,7 +25,9 @@ const GDocUploader = () => {
         })
         .then(doc => {
             console.log(doc)
-            extractFields(doc)            
+            var formFields = extractFields(doc) 
+            console.log(formFields)
+            setFormFields(formFields)           
         })
         .catch(err => {
             console.log(err)
