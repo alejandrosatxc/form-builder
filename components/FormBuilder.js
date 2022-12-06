@@ -38,7 +38,7 @@ const FormBuilder = ({ formFields }) => {
    
 
     return (
-        <div className="col-span-2 flex flex-col bg-white rounded-xl shadow-xl min-h-screen w-full p-6">
+        <div className="col-span-2 flex flex-col bg-eggplant rounded-xl shadow-xl min-h-screen w-full p-6">
             <h1 className="text-6xl text-center border-b-2 my-2">Form Builder</h1>
             <Dustbin formComponents={formComponents} setFormComponents={setFormComponents} />
             <Trashcan formComponents={formComponents} setFormComponents={setFormComponents} />

@@ -5,13 +5,13 @@ const FormPreview = ({ fields, setFormFields }) => {
 
     const router = useRouter()
 
-    if(fields === undefined) {
-        fields = {matches: [], uniqueMatches: []}
+    if (fields === undefined) {
+        fields = { matches: [], uniqueMatches: [] }
     }
 
     const handleNewDocument = () => {
         //Reset state to empty values
-        setFormFields({matches: [], uniqueMatches: []})
+        setFormFields({ matches: [], uniqueMatches: [] })
     }
 
     const handleFormGeneration = () => {
@@ -22,18 +22,22 @@ const FormPreview = ({ fields, setFormFields }) => {
     }
 
     return (
-        <div className="col-span-3 flex flex-col justify-center bg-white rounded-xl shadow-xl h-1/2 w-3/4">
+        <div className="col-span-3 flex flex-col justify-center bg-eggplant rounded-xl shadow-xl h-3/4 w-3/4">
             <h1 className="text-3xl text-center">Form Preview</h1>
-            <h2>Number of Fields found: {fields.matches.length}</h2>
-            <h2>Number of unique Fields found: {fields.uniqueMatches.length}</h2>
+            <div className="flex flex-row">
+                <h2>Number of Fields found: {fields.matches.length}</h2>
+                <h2>Number of unique Fields found: {fields.uniqueMatches.length}</h2>
+            </div>
             <h2>Fields</h2>
             <ul>
                 {fields.uniqueMatches.map((field, index) => {
                     return <li key={index}>{field}</li>
                 })}
             </ul>
-            <button onClick={handleNewDocument} className="transition ease-in-out delay-150 bg-blue-300 hover:bg-blue-600 hover:shadow-xl hover:shadow-cyan-200 h-8 w-16 mx-auto rounded-lg">New Document</button>
-            <button onClick={handleFormGeneration} className="transition ease-in-out delay-150 bg-blue-300 hover:bg-blue-600 hover:shadow-xl hover:shadow-cyan-200 h-8 w-16 mx-auto rounded-lg">Generate Form</button>
+            <div className="flex flex-row">
+                <button onClick={handleNewDocument} className="transition ease-in-out delay-150 bg-deep-cham hover:bg-terra-cotta hover:shadow-xl h-12 w-18 p-2 mx-auto rounded-lg">New Document</button>
+                <button onClick={handleFormGeneration} className="transition ease-in-out delay-150 bg-green-sheen hover:bg-terra-cotta hover:shadow-xl h-12 w-18 p-2 mx-auto rounded-lg">Generate Form</button>
+            </div>
         </div>
     )
 }

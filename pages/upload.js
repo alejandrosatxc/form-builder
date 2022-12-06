@@ -9,7 +9,7 @@ const Upload = () => {
     })
 
     return (
-        <div className="grid grid-cols-3 gap-x-6 h-screen place-items-center bg-gray-400">
+        <div className="grid grid-cols-3 gap-x-6 h-screen place-items-center bg-independence">
         {formFields.matches.length === 0 
         ?   <GDocUploader setFormFields={setFormFields}/>
         :   <FormPreview setFormFields={setFormFields} fields={formFields}/>

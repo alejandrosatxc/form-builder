@@ -13,7 +13,7 @@ export default function Home() {
   }
 
   return (
-    <div className="grid grid-cols-3 gap-x-6 h-auto bg-gray-400 p-6">
+    <div className="grid grid-cols-3 gap-x-6 h-auto bg-independence p-6">
       <Head>
         <title>Form Builder ✨🦆</title>
         <meta name="description" content="Created by Alejandro Zapien" />
