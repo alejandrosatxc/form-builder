@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import FormPreview from '../components/FormPreview'
+import TemplateAnalysis from '../components/TemplateAnalysis'
 import GDocUploader from '../components/GDocUploader'
 
 const Upload = () => {
@@ -12,7 +12,7 @@ const Upload = () => {
         <div className="grid grid-cols-3 gap-x-6 h-screen place-items-center bg-independence">
         {formFields.matches.length === 0 
         ?   <GDocUploader setFormFields={setFormFields}/>
-        :   <FormPreview setFormFields={setFormFields} fields={formFields}/>
+        :   <TemplateAnalysis setFormFields={setFormFields} fields={formFields}/>
         }           
         </div>
     )

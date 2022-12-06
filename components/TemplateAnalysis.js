@@ -1,7 +1,7 @@
 import { getRouteMatcher } from 'next/dist/shared/lib/router/utils/route-matcher'
 import { useRouter } from 'next/router'
 
-const FormPreview = ({ fields, setFormFields }) => {
+const TemplateAnalysis = ({ fields, setFormFields }) => {
 
     const router = useRouter()
 
@@ -23,7 +23,7 @@ const FormPreview = ({ fields, setFormFields }) => {
 
     return (
         <div className="col-span-3 flex flex-col justify-center bg-eggplant rounded-xl shadow-xl w-3/4">
-            <h1 className="text-3xl text-center my-4">Form Preview</h1>
+            <h1 className="text-3xl text-center my-4">Template Analysis</h1>
             <div className="flex flex-row justify-center my-2">
                 <div className='border rounded bg-green-sheen mx-4 p-2 h-20 w-1/4'>
                     <h2 className='text-3xl'>{fields.uniqueMatches.length}</h2>
@@ -50,4 +50,4 @@ const FormPreview = ({ fields, setFormFields }) => {
     )
 }
 
-export default FormPreview
+export default TemplateAnalysis

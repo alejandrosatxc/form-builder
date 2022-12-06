@@ -1,4 +1,4 @@
-import FormPreview from "../components/FormPreview"
+import TemplateAnalysis from "../components/TemplateAnalysis"
 
 const Preview = () => {
     return (
