@@ -51,7 +51,7 @@ const GDocUploader = ({setFormFields}) => {
                 <button className="bg-terra-cotta rounded p-2" onClick={() => signOut()}>Sign out</button></div> 
                 : 
                 <div>  Not signed in <br />
-                <button className="bg-green-sheen rounded p-2" onClick={() => signIn()}>Sign in</button></div>
+                <button className="bg-deep-cham rounded p-2" onClick={() => signIn()}>Sign in</button></div>
             }
         </div>
     )

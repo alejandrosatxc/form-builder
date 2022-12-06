@@ -16,7 +16,7 @@ const TemplateAnalysis = ({ fields, setFormFields }) => {
 
     const handleFormGeneration = () => {
         router.push({
-            pathname: '/',
+            pathname: '/formbuilder',
             query: fields
         })
     }
