@@ -23,7 +23,7 @@ const TemplateAnalysis = ({ fields, setFormFields }) => {
 
     return (
         <div className="col-span-3 flex flex-col justify-center bg-eggplant rounded-xl shadow-xl w-3/4">
-            <h1 className="text-3xl text-center my-4">Template Analysis</h1>
+            <h1 className="text-3xl text-center my-6">Template Analysis</h1>
             <div className="flex flex-row justify-center my-2">
                 <div className='border rounded bg-green-sheen mx-4 p-2 h-20 w-1/4'>
                     <h2 className='text-3xl'>{fields.uniqueMatches.length}</h2>
