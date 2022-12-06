@@ -42,7 +42,7 @@ const GDocUploader = ({setFormFields}) => {
                 pattern="https://.*" size="30"
                 required>    
             </input>
-            <button onClick={handleGdocSubmit} className="transition ease-in-out delay-150 bg-green-sheen hover:bg-terra-cotta hover:shadow-xl h-8 w-16 mx-auto rounded-lg" type="submit">
+            <button onClick={handleGdocSubmit} className="transition ease-in-out delay-50 bg-green-sheen hover:bg-terra-cotta hover:shadow-xl h-8 w-16 mx-auto rounded-lg" type="submit">
                 Submit
             </button>
             {session 

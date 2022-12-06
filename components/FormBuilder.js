@@ -22,12 +22,13 @@ const FormBuilder = ({ formFields }) => {
     useEffect(() => {
         if(formFields.matches.length > 0) {
             var formComponent = {}
+            const types = ['name', 'contact', 'checkbox', 'radio']
             var array = []
             formFields.uniqueMatches.forEach((match) => {
                 formComponent = {
                     name: match,
-                    type: 'name',
-                    id: generateId()
+                    type: types[Math.floor(Math.random() * 4)],
+                    id: match
                 }
                 array.push(formComponent)
             })
