@@ -11,7 +11,7 @@ const FormComponent = ({ name, type, id}) => {
     var component;
 
     switch (type) {
-        case 'name':  component = <Name name={name} type={type}/>; break;
+        case 'name':  component = <Name title={name} type={type}/>; break;
         case 'contact': component = <Contact name={name} type={type}/>; break;
         case 'checkbox': component = <Checkboxes name={name} type={type}/>; break;
         case 'radio': component = <Radio name={name} type={type}/>; break;

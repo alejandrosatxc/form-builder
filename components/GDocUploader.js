@@ -24,9 +24,9 @@ const GDocUploader = ({setFormFields}) => {
             return res.json()
         })
         .then(doc => {
-            console.log(doc)
+            //console.log(doc)
             var formFields = extractFields(doc) 
-            console.log(formFields)
+            //console.log(formFields)
             setFormFields(formFields)           
         })
         .catch(err => {

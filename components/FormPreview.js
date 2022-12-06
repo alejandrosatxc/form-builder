@@ -1,8 +1,24 @@
+import { getRouteMatcher } from 'next/dist/shared/lib/router/utils/route-matcher'
+import { useRouter } from 'next/router'
+
 const FormPreview = ({ fields, setFormFields }) => {
+
+    const router = useRouter()
+
+    if(fields === undefined) {
+        fields = {matches: [], uniqueMatches: []}
+    }
 
     const handleNewDocument = () => {
         //Reset state to empty values
         setFormFields({matches: [], uniqueMatches: []})
+    }
+
+    const handleFormGeneration = () => {
+        router.push({
+            pathname: '/',
+            query: fields
+        })
     }
 
     return (
@@ -16,7 +32,8 @@ const FormPreview = ({ fields, setFormFields }) => {
                     return <li key={index}>{field}</li>
                 })}
             </ul>
-            <button onClick={handleNewDocument}>New Document</button>
+            <button onClick={handleNewDocument} className="transition ease-in-out delay-150 bg-blue-300 hover:bg-blue-600 hover:shadow-xl hover:shadow-cyan-200 h-8 w-16 mx-auto rounded-lg">New Document</button>
+            <button onClick={handleFormGeneration} className="transition ease-in-out delay-150 bg-blue-300 hover:bg-blue-600 hover:shadow-xl hover:shadow-cyan-200 h-8 w-16 mx-auto rounded-lg">Generate Form</button>
         </div>
     )
 }
