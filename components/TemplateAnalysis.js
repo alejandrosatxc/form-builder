@@ -35,12 +35,12 @@ const TemplateAnalysis = ({ fields, setFormFields }) => {
                 </div>
             </div>
             <div className='flex flex-col items-center'>
-                <h2>Fields</h2>
-                <ul>
+                <h2 className='text-2xl'>Fields</h2>
+                <ol className='list-decimal'>
                     {fields.uniqueMatches.map((field, index) => {
                         return <li key={index}>{field}</li>
                     })}
-                </ul>
+                </ol>
                 <div className="flex flex-row my-4">
                     <button onClick={handleNewDocument} className="transition ease-in-out delay-50 bg-deep-cham hover:bg-terra-cotta hover:shadow-xl h-12 w-18 p-2 mx-8 rounded-lg">New Document</button>
                     <button onClick={handleFormGeneration} className="transition ease-in-out delay-50 bg-green-sheen hover:bg-terra-cotta hover:shadow-xl h-12 w-18 p-2 mx-8 rounded-lg">Generate Form</button>
