@@ -7,11 +7,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'eggplant': '#f4f1de',
-        'terra-cotta': '#e07a5f',
-        'independence': '#3d405b',
-        'green-sheen': '#81b29a',
-        'deep-cham': '#f2cc8f'
+        'primary': '#6F00FF',
+        'secondary': '#e07a5f',
+        'backdrop': '#3d405b',
+        'alert': '#81b29a',
+        'warning': '#f2cc8f'
       }
     },
   },

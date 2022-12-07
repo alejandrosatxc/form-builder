@@ -35,14 +35,14 @@ const GDocUploader = ({ setFormFields }) => {
     }
 
     return (
-        <div className="col-span-3 flex flex-col justify-center items-center bg-eggplant rounded-xl shadow-xl h-1/2 w-3/4">
-            <label className="text-3xl h-8 my-2 mx-auto" htmlFor="url">Enter a Google Doc URL:</label>
-            <input className="rounded border-2 my-4 mx-auto h-10 p-2 w-3/4 " ref={inputRef} type="url" name="url" id="url"
+        <div className="col-span-3 flex flex-col justify-center items-center bg-white rounded-xl shadow-xl h-1/2 min-w-[550px]">
+            <label className="text-3xl text-black h-8 my-2 mx-auto" htmlFor="url">Enter a Google Doc URL:</label>
+            <input className="rounded-lg bg-slate-200 border-slate-300 border-2 my-4 mx-auto h-14 p-2 w-3/4 " ref={inputRef} type="url" name="url" id="url"
                 placeholder="https://example.com"
                 pattern="https://.*" size="30"
                 required>
             </input>
-            <button onClick={handleGdocSubmit} className="transition ease-in-out delay-50 bg-green-sheen hover:bg-terra-cotta hover:shadow-xl h-10 w-3/4 my-2 mx-auto rounded" type="submit">
+            <button onClick={handleGdocSubmit} className="rounded-lg transition ease-in-out delay-50 bg-primary text-white hover:bg-terra-cotta hover:shadow-xl h-14 w-3/4 my-2 p-4 mx-auto" type="submit">
                 Submit
             </button>
             {session
