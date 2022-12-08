@@ -1,16 +1,53 @@
 import Link from "next/link"
+import Image from "next/image"
+import { useRouter } from "next/router"
+import { useState } from "react"
+import { useSession, signIn, signOut } from "next-auth/react"
+
 
 const Navbar = () => {
+
+    const router = useRouter()
+    const { data: session } = useSession()
+    const [toggle, setToggle] = useState(false)
+
+    const handleToggle = () => {
+        setToggle(!toggle)
+    }
+
+    const navitems = [
+        { title: "Form Builder", path: "/formbuilder" },
+        { title: "Upload", path: "/" },
+        { title: "Preview", path: "/preview" }
+    ]
+    const activeClasses = "flex justify-center place-items-center w-full h-full text-center text-lg text-primary border-b-2 border-b-primary"
+    const inactiveClasses = "flex justify-center place-items-center w-full h-full text-center text-lg text-slate-400"
     return (
         <header className="h-20">
             <nav className="bg-white h-full w-full flex justify-between items-center">
                 <h1 className="text-4xl p-4"><Link href="/">✨🦆</Link></h1>
-                <ul className="flex flex-row grow w-auto justify-center">
-                    <Link href="/formbuilder"><li className="h-10 min-w-28 text-center text-lg mx-4 p-2 cursor-pointer transition ease-in-out hover:bg-terra-cotta">Form Builder</li></Link>
-                    <Link href="/"><li className="h-10 min-w-28 text-center text-lg mx-4 p-2 cursor-pointer transition ease-in-out hover:bg-terra-cotta">Upload</li></Link>
-                    <Link href="/preview"><li className="h-10 min-w-28 text-center text-lg mx-4 p-2 cursor-pointer transition ease-in-out hover:bg-terra-cotta">Preview</li></Link>
+                <ul className="flex flex-row w-1/2 h-full justify-center place-items-center">
+                    {navitems.map(item => {
+                        return (
+                            <li key={item.title} className={router.pathname === item.path ? activeClasses : inactiveClasses}>
+                                <Link href={item.path}>{item.title}</Link>
+                            </li>
+                        )
+                    })}
                 </ul>
-                <button className="p-4 bg-slate-200 rounded-md mx-4">Sign in</button>
+                {session
+                    ?
+                    <div className="flex flex-col p-4">
+                        <img onClick={handleToggle} className="rounded-full w-12 hover:cursor-pointer" src={session.user.image} />
+                        {toggle
+                            ? <div className="flex justify-center place-items-center rounded-lg absolute top-24 right-4 p-4 bg-white border-2 border-slate-100">Signed in as {session.user.email}<button className="bg-slate-200 rounded p-2 align" onClick={() => signOut()}>Sign out</button></div>
+                            : null}
+                    </div>
+                    :
+                    <div className="flex flex-col p-4">
+                        <button className="bg-violet-200 rounded p-2 align" onClick={() => signIn()}>Sign in</button>
+                    </div>
+                }
             </nav>
         </header>
     )

@@ -6,13 +6,13 @@ import { HTML5Backend } from 'react-dnd-html5-backend'
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   return (
-    <Layout>
-      <SessionProvider session={session}>
-        <DndProvider backend={HTML5Backend}>
+    <SessionProvider session={session}>
+      <DndProvider backend={HTML5Backend}>
+        <Layout>
           <Component {...pageProps} />
-        </DndProvider>
-      </SessionProvider>
-    </Layout>
+        </Layout>
+      </DndProvider>
+    </SessionProvider>
   )
 }
 

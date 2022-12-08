@@ -1,8 +1,7 @@
-import { useSession, signIn, signOut } from "next-auth/react"
+import { useSession} from "next-auth/react"
 import { useRef } from "react"
-import { extractFields } from '../lib/getGdocText'
 
-const GDocUploader = ({ setFormFields }) => {
+const GDocUploader = ({ setGdoc }) => {
     const { data: session } = useSession()
     const inputRef = useRef(null)
 
@@ -24,10 +23,8 @@ const GDocUploader = ({ setFormFields }) => {
                 return res.json()
             })
             .then(doc => {
-                //console.log(doc)
-                var formFields = extractFields(doc)
-                //console.log(formFields)
-                setFormFields(formFields)
+                //console.log(doc)ß
+                setGdoc(doc)
             })
             .catch(err => {
                 console.log(err)
@@ -35,26 +32,16 @@ const GDocUploader = ({ setFormFields }) => {
     }
 
     return (
-        <div className="col-span-3 flex flex-col justify-center items-center bg-white rounded-xl shadow-xl h-1/2 min-w-[550px]">
-            <label className="text-3xl text-black h-8 my-2 mx-auto" htmlFor="url">Enter a Google Doc URL:</label>
-            <input className="rounded-lg bg-slate-200 border-slate-300 border-2 my-4 mx-auto h-14 p-2 w-3/4 " ref={inputRef} type="url" name="url" id="url"
-                placeholder="https://example.com"
+        <div className="flex flex-col justify-center bg-white rounded-xl shadow-xl my-8 min-w-[550px]">
+            <label className="text-3xl text-slate-700 my-2 mx-auto h-8 hidden" htmlFor="url">Paste a Google Doc URL</label>
+            <input className="rounded-full text-lg placeholder-indigo-600 bg-indigo-100 border-indigo-300 border-2 mt-8 mb-4 mx-auto h-14 p-2 w-4/5 " ref={inputRef} type="url" name="url" id="url"
+                placeholder="Paste a Google Doc URL"
                 pattern="https://.*" size="30"
                 required>
             </input>
-            <button onClick={handleGdocSubmit} className="rounded-lg transition ease-in-out delay-50 bg-primary text-white hover:bg-terra-cotta hover:shadow-xl h-14 w-3/4 my-2 p-4 mx-auto" type="submit">
+            <button onClick={handleGdocSubmit} className="rounded-full transition ease-in-out delay-50 bg-primary text-white hover:bg-terra-cotta hover:shadow-xl h-14 w-4/5 mb-8 mt-2 p-4 mx-auto" type="submit">
                 Submit
             </button>
-            {session
-                ?
-                <div className="flex flex-col">  Signed in as {session.user.email} <br />
-                    <button className="bg-terra-cotta rounded p-2 align" onClick={() => signOut()}>Sign out</button>
-                </div>
-                :
-                <div className="flex flex-col">  Not signed in <br />
-                    <button className="bg-deep-cham rounded p-2 align" onClick={() => signIn()}>Sign in</button>
-                </div>
-            }
         </div>
     )
 }

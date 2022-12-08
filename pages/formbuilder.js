@@ -9,11 +9,11 @@ export default function Home() {
   let formFields = { matches: [], uniqueMatches: []}
   if(router.query) {
     formFields = router.query
-    console.log(formFields)
+    //console.log(formFields)
   }
 
   return (
-    <div className="grid grid-cols-3 gap-x-6 h-auto bg-independence p-6">
+    <div className="flex flex-row h-auto">
       <Head>
         <title>Form Builder ✨🦆</title>
         <meta name="description" content="Created by Alejandro Zapien" />
