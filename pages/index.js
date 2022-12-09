@@ -11,7 +11,13 @@ const Upload = () => {
         {Gdoc 
         ?   <TemplateAnalysis setGdoc={setGdoc} Gdoc={Gdoc}/>
         :   <GDocUploader setGdoc={setGdoc}/>
-        }           
+        }
+            <div className='w-full h-96 bg-violet-400'>
+                
+            </div>
+            <div className='w-full h-96 bg-violet-800'>
+                
+            </div>
         </div>
     )
 }

@@ -23,7 +23,7 @@ const GDocUploader = ({ setGdoc }) => {
                 return res.json()
             })
             .then(doc => {
-                //console.log(doc)ß
+                //console.log(doc)
                 setGdoc(doc)
             })
             .catch(err => {
@@ -32,7 +32,7 @@ const GDocUploader = ({ setGdoc }) => {
     }
 
     return (
-        <div className="flex flex-col justify-center bg-white rounded-xl shadow-xl my-8 min-w-[550px]">
+        <div className="flex flex-col relative top-36 justify-center bg-white rounded-xl shadow-2xl my-8 max-w-[550px] min-w-[400px]">
             <label className="text-3xl text-slate-700 my-2 mx-auto h-8 hidden" htmlFor="url">Paste a Google Doc URL</label>
             <input className="rounded-full text-lg placeholder-indigo-600 bg-indigo-100 border-indigo-300 border-2 mt-8 mb-4 mx-auto h-14 p-2 w-4/5 " ref={inputRef} type="url" name="url" id="url"
                 placeholder="Paste a Google Doc URL"

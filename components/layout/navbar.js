@@ -7,13 +7,10 @@ import { useSession, signIn, signOut } from "next-auth/react"
 
 const Navbar = () => {
 
+
     const router = useRouter()
     const { data: session } = useSession()
     const [toggle, setToggle] = useState(false)
-
-    const handleToggle = () => {
-        setToggle(!toggle)
-    }
 
     const navitems = [
         { title: "Form Builder", path: "/formbuilder" },
@@ -38,7 +35,7 @@ const Navbar = () => {
                 {session
                     ?
                     <div className="flex flex-col p-4">
-                        <img onClick={handleToggle} className="rounded-full w-12 hover:cursor-pointer" src={session.user.image} />
+                        <img onClick={() => {setToggle(!toggle)}} className="rounded-full w-12 hover:cursor-pointer" src={session.user.image} />
                         {toggle
                             ? <div className="flex justify-center place-items-center rounded-lg absolute top-24 right-4 p-4 bg-white border-2 border-slate-100">Signed in as {session.user.email}<button className="bg-slate-200 rounded p-2 align" onClick={() => signOut()}>Sign out</button></div>
                             : null}
