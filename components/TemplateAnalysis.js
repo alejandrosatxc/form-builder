@@ -25,10 +25,10 @@ const TemplateAnalysis = ({ Gdoc, setGdoc }) => {
         })
     }
 
-    const active = "h-52 overflow-scroll shadow-inner flex flex-col bg-slate-100 w-full transition-height ease-in-out duration-500"
+    const active = "h-52 overflow-y-scroll scrollbar shadow-inner flex flex-col bg-slate-100 w-full transition-height ease-in-out duration-500"
     const inactive = "h-0 overflow-hidden shadow-inner flex flex-col bg-slate-100 w-full transition-height ease-in-out duration-500"
-    const activeTextToggle = "text-primary text-2xl mx-8 my-4 hover:cursor-pointer"
-    const inactiveTextToggle = "text-slate-500 hover:text-primary text-2xl mx-8 my-4 hover:cursor-pointer"
+    const activeTextToggle = "text-primary text-2xl w-1/5 mx-8 my-4 hover:cursor-pointer"
+    const inactiveTextToggle = "text-slate-500 hover:text-primary text-2xl w-1/5 mx-8 my-4 hover:cursor-pointer"
     return (
         <div className="flex flex-col justify-center bg-white rounded-xl shadow-xl my-8 min-w-[550px]">
             <h2 className="text-lg text-slate-400 mt-8 mb-2 mx-8">Template Analysis</h2>
