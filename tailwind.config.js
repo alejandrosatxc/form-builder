@@ -12,6 +12,9 @@ module.exports = {
         'backdrop': '#3d405b',
         'alert': '#81b29a',
         'warning': '#f2cc8f'
+      },
+      transitionProperty : {
+        'height' : 'height'
       }
     },
   },
