@@ -15,8 +15,6 @@ const TemplateAnalysis = ({ Gdoc, setGdoc }) => {
     }
 
     const handleNewDocument = () => {
-        //Reset state to empty values
-        //setFormFields({ matches: [], uniqueMatches: [] })
         setGdoc(null)
     }
 
@@ -44,6 +42,7 @@ const TemplateAnalysis = ({ Gdoc, setGdoc }) => {
                     <p className='text-slate-600'>Total Fields</p>
                 </div>
             </div>
+            {/* TODO: Make h2 stay purple when toggled */}
             <h2 onClick={() => { setFieldsToggle(!fieldsToggle) }} className='text-slate-500 hover:text-violet-600 text-2xl mx-8 my-4 hover:cursor-pointer'>{fieldsToggle ? "Fields -" : "Fields +"}</h2>
             <div className={fieldsToggle ? active : inactive}>
                 <ol className='list-decimal ml-8'>

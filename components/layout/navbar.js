@@ -11,6 +11,8 @@ const Navbar = () => {
     const router = useRouter()
     const { data: session } = useSession()
     const [toggle, setToggle] = useState(false)
+    //Figure out how to flip this value on an error message firing
+    const pingSignin = false
 
     const navitems = [
         { title: "Form Builder", path: "/formbuilder" },
@@ -41,8 +43,9 @@ const Navbar = () => {
                             : null}
                     </div>
                     :
-                    <div className="flex flex-col p-4">
-                        <button className="bg-violet-200 rounded p-2 align" onClick={() => signIn()}>Sign in</button>
+                    <div className="flex justify-center place-items-center p-4">
+                        <button onClick={() => signIn()} className="bg-violet-200 rounded h-10 w-20 p-2 z-10">Sign in</button>
+                        { pingSignin ? <span className="animate-ping absolute bg-violet-200 rounded h-8 w-14 p-2 cursor-default"></span> : null }
                     </div>
                 }
             </nav>
