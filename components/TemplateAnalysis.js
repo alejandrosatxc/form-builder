@@ -27,7 +27,7 @@ const TemplateAnalysis = ({ Gdoc, setGdoc }) => {
         })
     }
 
-    const active = "h-60 overflow-scroll shadow-inner flex flex-col bg-slate-100 w-full transition-height ease-in-out duration-500"
+    const active = "h-52 overflow-scroll shadow-inner flex flex-col bg-slate-100 w-full transition-height ease-in-out duration-500"
     const inactive = "h-0 overflow-hidden shadow-inner flex flex-col bg-slate-100 w-full transition-height ease-in-out duration-500"
 
     return (
