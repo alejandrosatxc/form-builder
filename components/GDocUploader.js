@@ -60,12 +60,12 @@ const GDocUploader = ({ setGdoc }) => {
     return (
         <div className="flex flex-col relative top-36 justify-center bg-white rounded-xl shadow-2xl my-8 max-w-[550px] min-w-[400px]">
             <label className="text-3xl text-slate-700 my-2 mx-auto h-8 hidden" htmlFor="url">Paste a Google Doc URL</label>
-            <input className="rounded-full shadow-inner text-lg placeholder-indigo-600 bg-indigo-100 border-indigo-300 border-2 mt-8 mb-4 mx-auto h-14 p-2 w-4/5 " ref={inputRef} type="url" name="url" id="url"
+            <input className="rounded-full shadow-well text-lg placeholder-indigo-600 bg-indigo-300 border-indigo-300 border-0 mt-8 mb-4 mx-auto h-14 p-4 w-4/5" ref={inputRef} type="url" name="url" id="url"
                 placeholder="Paste a Google Doc URL"
                 pattern="https://.*" size="30"
                 required>
             </input>
-            <button onClick={handleGdocSubmit} className="rounded-full transition ease-in-out delay-50 bg-primary text-white hover:bg-terra-cotta hover:shadow-xl h-14 w-4/5 mb-8 mt-2 p-4 mx-auto" type="submit">
+            <button onClick={handleGdocSubmit} className="rounded-full transition ease-in-out delay-50 bg-primary text-white shadow-bump h-14 w-4/5 mb-8 mt-2 p-4 mx-auto" type="submit">
                 Submit
             </button>
             <div className={error.message ? activeError : inactiveError}>
