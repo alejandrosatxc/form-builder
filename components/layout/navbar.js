@@ -17,7 +17,7 @@ const Navbar = () => {
     const navitems = [
         { title: "Form Builder", path: "/formbuilder" },
         { title: "Upload", path: "/" },
-        { title: "Preview", path: "/preview" }
+        { title: "Components", path: "/components" }
     ]
     const activeClasses = "flex justify-center place-items-center w-full h-full text-center text-lg text-primary border-b-2 border-b-primary"
     const inactiveClasses = "flex justify-center place-items-center w-full h-full text-center text-lg text-slate-400"

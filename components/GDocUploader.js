@@ -46,10 +46,11 @@ const GDocUploader = ({ setGdoc }) => {
         })
             .then(res => {
                 console.log(res)
+                if(!res.ok) { setError({message: 'Try Signing out, then Sign in again'}); return }
                 return res.json()
             })
             .then(doc => {
-                //console.log(doc)
+                console.log(doc)
                 setGdoc(doc)
             })
             .catch(err => {

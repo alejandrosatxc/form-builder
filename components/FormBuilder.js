@@ -2,15 +2,16 @@ import { useEffect, useState } from 'react'
 import Dustbin from '../components/Dustbin'
 import Trashcan from './Trashcan'
 
-const FormBuilder = ({ formFields }) => {
+const FormBuilder = ({ GdocData }) => {
 
     const [formComponents, setFormComponents] = useState([])
+
     useEffect(() => {
-        if(formFields.matches.length > 0) {
+        if (GdocData) {
             var formComponent = {}
             const types = ['name', 'contact', 'checkbox', 'radio']
             var array = []
-            formFields.uniqueMatches.forEach((match) => {
+            GdocData.uniqueMatches.forEach((match) => {
                 formComponent = {
                     name: match,
                     type: types[Math.floor(Math.random() * 4)],
@@ -18,11 +19,12 @@ const FormBuilder = ({ formFields }) => {
                 }
                 array.push(formComponent)
             })
-            //console.log(array)
             setFormComponents(array)
         }
     }, [])
-   
+
+
+
 
     return (
         <div className="flex flex-col bg-slate-300 min-h-screen w-full p-6">
