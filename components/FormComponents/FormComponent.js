@@ -34,14 +34,14 @@ const FormComponent = ({ name, type, id}) => {
 
     return (
         <li
-            className="bg-white h-auto w-auto my-2 border-2 rounded-xl p-2"
+            className="flex flex-col justify-left bg-white h-auto w-auto my-2 rounded-lg shadow-xl p-4"
             ref={drag}
             style={{
                 opacity: isDragging ? 0.5 : 1
             }}
         >
-            <span className="text-black">{id}</span>
-            {component}
+            <span className="text-black text-2xl">{id}</span>
+            <div className="flex flex-col justify-left place-items-start w-64">{component}</div>
         </li>
     )
 }

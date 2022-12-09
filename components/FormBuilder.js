@@ -28,7 +28,7 @@ const FormBuilder = ({ GdocData }) => {
 
     return (
         <div className="flex flex-col bg-slate-300 min-h-screen w-full p-6">
-            <h1 className="text-6xl my-2">Form Builder</h1>
+            <h1 className="text-6xl my-2">{GdocData ? GdocData.title : "New Form"}</h1>
             <Dustbin formComponents={formComponents} setFormComponents={setFormComponents} />
             <Trashcan formComponents={formComponents} setFormComponents={setFormComponents} />
         </div>
