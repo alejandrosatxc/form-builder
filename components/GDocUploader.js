@@ -1,11 +1,14 @@
 import { useSession} from "next-auth/react"
 import { useRef, useState } from "react"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCircleNotch } from '@fortawesome/free-solid-svg-icons'
 
 const GDocUploader = ({ setGdoc }) => {
 
     const { data: session } = useSession()
     const inputRef = useRef(null)
     const [error, setError] = useState({message: null})
+    const [loading, setLoading] = useState(false)
 
     const activeError = `
         absolute top-52
@@ -26,13 +29,25 @@ const GDocUploader = ({ setGdoc }) => {
     `
 
     const handleGdocSubmit = () => {
-
+        setLoading(true)
         var userInput = inputRef.current.value
 
         //Guardian Clauses
-        if(!userInput) { setError({message: 'Oof. The box above is empty 🤷'}); return }
-        if(!session) { setError({message: 'You need to login in to google first ☝️'}); return }
-        if(!session.accessToken) { setError({message: 'Try Signing out, then Sign in again'}); return }
+        if(!userInput) { 
+            setError({message: 'Oof. The box above is empty 🤷'})
+            setLoading(false)
+            return 
+        }
+        if(!session) { 
+            setError({message: 'You need to login in to google first ☝️'}) 
+            setLoading(false)
+            return
+         }
+        if(!session.accessToken) { 
+            setError({message: 'Try Signing out, then Sign in again'})
+            setLoading(false)
+            return
+        }
 
         const regex = /\/document\/d\/([a-zA-Z0-9-_]+)/
         var baseURL = 'https://docs.googleapis.com/v1/documents/'
@@ -46,7 +61,11 @@ const GDocUploader = ({ setGdoc }) => {
         })
             .then(res => {
                 console.log(res)
-                if(!res.ok) { setError({message: 'Try Signing out, then Sign in again'}); return }
+                if(!res.ok) { 
+                    setError({message: 'Try Signing out, then Sign in again'}); 
+                    setLoading(false)
+                    return 
+                }
                 return res.json()
             })
             .then(doc => {
@@ -55,11 +74,13 @@ const GDocUploader = ({ setGdoc }) => {
             })
             .catch(err => {
                 console.log(err)
+                setError({message: "Something went wrong"})
+                setLoading(false)
             })
     }
 
     return (
-        <div className="flex flex-col relative top-36 justify-center bg-white rounded-xl shadow-2xl my-8 max-w-[550px] min-w-[400px]">
+        <div className="flex flex-col relative top-36 justify-center bg-white border-t-4 border-primary rounded-xl shadow-2xl my-8 max-w-[550px] min-w-[400px]">
             <label className="text-3xl text-slate-700 my-2 mx-auto h-8 hidden" htmlFor="url">Paste a Google Doc URL</label>
             <input className="rounded-full shadow-well text-lg placeholder-indigo-600 bg-indigo-300 border-indigo-300 border-0 mt-8 mb-4 mx-auto h-14 p-4 w-4/5" ref={inputRef} type="url" name="url" id="url"
                 placeholder="Paste a Google Doc URL"
@@ -67,7 +88,7 @@ const GDocUploader = ({ setGdoc }) => {
                 required>
             </input>
             <button onClick={handleGdocSubmit} className="rounded-full transition ease-in-out delay-50 bg-primary text-white shadow-bump h-14 w-4/5 mb-8 mt-2 p-4 mx-auto" type="submit">
-                Submit
+                Submit <FontAwesomeIcon className={loading ? "animate-spin" : "hidden" } icon={faCircleNotch}/>
             </button>
             <div className={error.message ? activeError : inactiveError}>
                 <span>{error.message}</span>
