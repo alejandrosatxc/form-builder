@@ -45,7 +45,7 @@ const TemplateAnalysis = ({ Gdoc, setGdoc }) => {
     const inactiveTextToggle = "text-slate-500 hover:text-primary text-xl w-14 ml-8 mr-2 my-4"
 
     return (
-        <div className="absolute top-24 flex flex-col justify-center bg-white border-t-4 border-primary rounded-xl shadow-xl my-8 min-w-[550px]">
+        <div className="flex flex-col justify-center bg-white border-t-4 border-primary rounded-xl shadow-xl my-8 min-w-[550px]">
             <h2 className="text-lg text-slate-400 mt-8 mb-2 mx-8">Template Analysis</h2>
             <h1 className="text-4xl text-primary mt-2 mb-4 mx-8"><FontAwesomeIcon icon={faFileLines} className="mr-4" size="sm" />{GdocData.title}</h1>
             <div className="flex flex-row justify-center w-full">
