@@ -67,7 +67,6 @@ const Dustbin = ({ formComponents, setFormComponents }) => {
       {isActive ? 'Release to drop' : 'Drag a box here'}
       <ul>
         {formComponents.map((component) => {
-          //I suspect passing id here on every re-render is what is changing component ID's
           return <FormComponent key={component.id} name={component.name} type={component.type} id={component.id}/>
         })}
       </ul>

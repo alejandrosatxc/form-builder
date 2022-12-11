@@ -40,8 +40,7 @@ const FormComponent = ({ name, type, id}) => {
                 opacity: isDragging ? 0.5 : 1
             }}
         >
-            <span className="text-black text-2xl">{id}</span>
-            <div className="flex flex-col justify-left place-items-start w-64">{component}</div>
+            <div className="flex flex-col justify-left place-items-start w-auto">{component}</div>
         </li>
     )
 }

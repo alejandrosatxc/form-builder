@@ -58,8 +58,7 @@ const TemplateAnalysis = ({ Gdoc, setGdoc }) => {
                     <p className='text-slate-600'>Total Fields</p>
                 </div>
             </div>
-            {/* TODO: Make h2 stay purple when toggled */}
-            <button onClick={() => { setFieldsToggle(!fieldsToggle) }} className="flex flex-row place-items-center text-left w-1/4">
+            <button onClick={() => { setFieldsToggle(!fieldsToggle) }} className="flex flex-row place-items-center text-left w-1/4 hover:text-primary">
                 <h2 className={fieldsToggle ? activeTextToggle : inactiveTextToggle}>Fields </h2>
                 <FontAwesomeIcon className={fieldsToggle ? "bg-slate-100 text-primary rounded-full p-1 transition ease-in-out duration-400 -rotate-180" : "bg-slate-100 text-slate-500 rounded-full p-1 transition ease-in-out duration-400"} icon={faChevronDown} size="sm" />
             </button>
