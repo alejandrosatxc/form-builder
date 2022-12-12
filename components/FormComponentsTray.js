@@ -8,7 +8,13 @@ const FormComponentsTray = () => {
         { type: "name", name: "Name", icon: faUser, label: "Name" },
         { type: "contact", name: "Contact", icon: faEnvelope, label: "Contact" },
         { type: "checkbox", name: "Checkbox", icon: faSquareCheck, label: "Checkboxes" },
-        { type: "radio", name: "Radio", icon: faCircleDot, label: "Radio" }
+        { type: "radio", name: "Radio", icon: faCircleDot, label: "Radio" },
+        { type: null, name: null, icon: null, label: "Address" },
+        { type: null, name: null, icon: null, label: "Phone" },
+        { type: null, name: null, icon: null, label: "Date" },
+        { type: null, name: null, icon: null, label: "Name" },
+        { type: null, name: null, icon: null, label: "Name" },
+        { type: null, name: null, icon: null, label: "Name" },
     ])
 
     return (

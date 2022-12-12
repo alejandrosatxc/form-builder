@@ -1,9 +1,7 @@
-import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { use } from 'react'
 import FormComponentsTray from '../components/FormComponentsTray'
 import FormBuilder from '../components/FormBuilder'
-export default function Home() {
+export default function FormBuilderInterface() {
 
   const router = useRouter()
   let GdocData = null
@@ -15,11 +13,6 @@ export default function Home() {
 
   return (
     <div className="flex flex-col h-auto">
-      <Head>
-        <title>Form Builder ✨🦆</title>
-        <meta name="description" content="Created by Alejandro Zapien" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
       <div className="flex place-items-center justify-center w-full h-16 bg-red-400 border-red-500 border-2">This is currently being designed and worked on, not final, check Components tab for visual updates</div>
       <div className="flex flex-row">
         <FormComponentsTray />
