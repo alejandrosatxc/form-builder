@@ -9,10 +9,12 @@ const Components = () => {
             <GDocUploader />
             <TemplateAnalysis />
             <FormComponentsTray />
-            <FormComponent name="Name Input" type="name" id="name-tray" />
-            <FormComponent name="Contact Input" type="contact" id="contact-tray" />
-            <FormComponent name="Radio Input" type="radio" id="radio-tray" />
-            <FormComponent name="Checkbox Input" type="checkbox" id="checkboxes-tray" />
+            <div className="flex flex-col">
+                <FormComponent name="Name Input" type="name" id="name-tray" />
+                <FormComponent name="Contact Input" type="contact" id="contact-tray" />
+                <FormComponent name="Radio Input" type="radio" id="radio-tray" />
+                <FormComponent name="Checkbox Input" type="checkbox" id="checkboxes-tray" />
+            </div>
         </div>
     )
 }

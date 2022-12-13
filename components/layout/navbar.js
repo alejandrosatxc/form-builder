@@ -44,8 +44,8 @@ const Navbar = () => {
                     </div>
                     :
                     <div className="flex justify-center place-items-center p-4">
-                        <button onClick={() => signIn()} className="bg-violet-200 rounded h-10 w-20 p-2 z-10">Sign in</button>
-                        { pingSignin ? <span className="animate-ping absolute bg-violet-200 rounded h-8 w-14 p-2 cursor-default"></span> : null }
+                        <button onClick={() => signIn()} className="bg-gradient-to-r from-fuchsia-600 to-violet-600 text-white rounded h-10 w-20 p-2 z-10">Sign in</button>
+                        { pingSignin ? <span className="animate-ping absolute bg-fuchsia-600 rounded h-8 w-14 p-2 cursor-default"></span> : null }
                     </div>
                 }
             </nav>
