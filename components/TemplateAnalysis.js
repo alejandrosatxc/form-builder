@@ -39,28 +39,22 @@ const TemplateAnalysis = ({ Gdoc, setGdoc }) => {
         })
     }
 
-    const active = "h-52 overflow-y-scroll scrollbar shadow-inner flex flex-col bg-violet-200 w-full transition-height ease-in-out duration-500"
-    const inactive = "h-0 overflow-hidden shadow-inner flex flex-col bg-violet-200 w-full transition-height ease-in-out duration-500"
+    const active = "h-52 overflow-y-scroll scrollbar shadow-inner flex flex-col bg-slate-800 text-white w-full transition-height ease-in-out duration-500"
+    const inactive = "h-0 overflow-hidden shadow-inner flex flex-col bg-slate-800 text-white w-full transition-height ease-in-out duration-500"
     const activeTextToggle = "text-primary text-xl w-14 ml-8 mr-2 my-4"
     const inactiveTextToggle = "text-slate-500 hover:text-primary text-xl w-14 ml-8 mr-2 my-4"
 
     return (
-        <div className="flex flex-col justify-center bg-white border-t-4 border-primary rounded-xl shadow-xl my-8 min-w-[550px]">
+        <div className="flex flex-col justify-center bg-slate-900  border-t-4 border-primary rounded-xl shadow-xl my-8 min-w-[550px]">
             <h2 className="text-lg text-slate-400 mt-8 mb-2 mx-8">Template Analysis</h2>
-            <h1 className="text-4xl text-primary mt-2 mb-4 mx-8"><FontAwesomeIcon icon={faFileLines} className="mr-4" size="sm" />{GdocData.title}</h1>
+            <h1 className="text-4xl text-white mt-2 mb-4 mx-8"><FontAwesomeIcon icon={faFileLines} className="mr-4" size="sm" />{GdocData.title}</h1>
             <div className="flex flex-row justify-center w-full">
-                <div className='border rounded shadow-well bg-violet-200 border-slate-300 ml-8 mr-4 p-2 h-20 w-1/2'>
-                    <h2 className='text-primary text-3xl'>{GdocData.uniqueMatches.length}</h2>
-                    <p className='text-slate-600'>Unique Fields Identified</p>
-                </div>
-                <div className='border rounded shadow-well bg-violet-200 border-slate-300 ml-4 mr-8 p-2 h-20 w-1/2'>
-                    <h2 className='text-primary text-3xl'>{GdocData.matches.length}</h2>
-                    <p className='text-slate-600'>Total Fields</p>
-                </div>
+                <DataDisplay value={GdocData.uniqueMatches.length} description="Unique Fields Identified" />
+                <DataDisplay value={GdocData.matches.length} description="Total Fields" />
             </div>
             <button onClick={() => { setFieldsToggle(!fieldsToggle) }} className="flex flex-row place-items-center text-left w-1/4 hover:text-primary">
                 <h2 className={fieldsToggle ? activeTextToggle : inactiveTextToggle}>Fields </h2>
-                <FontAwesomeIcon className={fieldsToggle ? "bg-slate-100 text-primary rounded-full p-1 transition ease-in-out duration-400 -rotate-180" : "bg-slate-100 text-slate-500 rounded-full p-1 transition ease-in-out duration-400"} icon={faChevronDown} size="sm" />
+                <FontAwesomeIcon className={fieldsToggle ? "bg-slate-700 text-primary rounded-full p-1 transition ease-in-out duration-400 -rotate-180" : "bg-slate-700 text-white rounded-full p-1 transition ease-in-out duration-400"} icon={faChevronDown} size="sm" />
             </button>
             <div className={fieldsToggle ? active : inactive}>
                 <ol className='list-decimal ml-8'>
@@ -70,10 +64,19 @@ const TemplateAnalysis = ({ Gdoc, setGdoc }) => {
                 </ol>
             </div>
 
-            <div className="flex flex-row bg-slate-200 rounded-b-lg w-full justify-end py-4 px-4">
-                <button onClick={handleNewDocument} className="bg-indigo-200 text-indigo-700 h-12 w-18 p-2 mx-2 rounded-full">New Document</button>
+            <div className="flex flex-row bg-slate-900 rounded-b-lg w-full justify-end py-4 px-4">
+                <button onClick={handleNewDocument} className="bold text-primary h-12 w-18 p-2 mx-2 rounded-full">New Document</button>
                 <button onClick={handleFormGeneration} className="transition ease-in-out delay-50 bg-primary text-slate-100 shadow-2xl h-12 w-18 p-2 mx-2 rounded-full">Generate Form</button>
             </div>
+        </div>
+    )
+}
+
+const DataDisplay = ({ value, description }) => {
+    return (
+        <div className='rounded bg-slate-800 mx-8 p-2 h-20 w-1/2'>
+            <h2 className='text-white text-3xl'>{value}</h2>
+            <p className='text-white'>{description}</p>
         </div>
     )
 }

@@ -23,7 +23,7 @@ const Navbar = () => {
     const inactiveClasses = "flex justify-center place-items-center w-full h-full text-center text-lg text-slate-400"
     return (
         <header className="h-20">
-            <nav className="bg-white h-full w-full flex justify-between items-center">
+            <nav className="bg-black h-full w-full flex justify-between items-center">
                 <h1 className="text-4xl p-4"><Link href="/">✨🦆</Link></h1>
                 <ul className="flex flex-row w-1/2 h-full justify-center place-items-center">
                     {navitems.map(item => {

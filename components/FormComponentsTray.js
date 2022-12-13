@@ -15,11 +15,12 @@ const FormComponentsTray = () => {
         { type: null, name: null, icon: null, label: "Name" },
         { type: null, name: null, icon: null, label: "Name" },
         { type: null, name: null, icon: null, label: "Name" },
+        { type: null, name: null, icon: null, label: "Address" },
     ])
 
     return (
-        <div className="bg-indigo-500 shadow-xl h-fit w-[300px]">
-            <h2 className="text-3xl">Fields Tray</h2>
+        <div className="bg-slate-800 shadow-xl h-fit w-[300px]">
+            <h2 className="text-3xl p-4 text-white">Form Components</h2>
             <ul className="">
                 {components.map(component => {
                     return (

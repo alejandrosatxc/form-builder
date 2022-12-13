@@ -18,16 +18,16 @@ const CondensedComponent = ({ type, name, icon, label }) => {
     }))
 
     return (
-        <div className="flex flex-row bg-slate-400 w-[300px] h-16 border-b-2 border-slate-600"
+        <div className="flex flex-row bg-slate-500 group hover:bg-primary hover:cursor-pointer transition-colors ease-in-out duration-300 w-[300px] h-16 border-b-2 border-slate-800"
             ref={drag}
             style={{
                 opacity: isDragging ? 0.5 : 1
             }}>
-            <div className="flex bg-slate-500 h-full w-16 justify-center place-items-center">
-                <FontAwesomeIcon icon={icon} size="xl" />
+            <div className="flex bg-slate-700 group-hover:bg-violet-500 transition-colors ease-in-out duration-300 h-full w-16 justify-center place-items-center">
+                <FontAwesomeIcon className="text-white" icon={icon} size="xl" />
             </div>
-            <div className='flex bg-slate-400 h-full justify-center place-items-center'>
-                <h3 className="text-black text-xl ml-4">{label}</h3>
+            <div className='flex h-full justify-center place-items-center'>
+                <h3 className="text-white text-xl ml-4">{label}</h3>
             </div>
         </div>
     )

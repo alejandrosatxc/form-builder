@@ -6,6 +6,7 @@ import FormComponent from './FormComponents/FormComponent'
 const style = {
   height: '90%',
   width: '100%',
+  borderRadius: '4px',
   marginRight: '1.5rem',
   marginBottom: '1.5rem',
   color: 'white',
@@ -55,7 +56,7 @@ const Dustbin = ({ formComponents, setFormComponents }) => {
   )
 
   const isActive = canDrop && isOver
-  let backgroundColor = '#222'
+  let backgroundColor = '#FFFFFF'
   if (isActive) {
     backgroundColor = 'darkgreen'
   } else if (canDrop) {

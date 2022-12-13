@@ -11,7 +11,7 @@ export default function Layout({ children }) {
         <link rel="icon" href="/favicon.ico" />
       </Head> */}
       <Navbar />
-      <main className='flex-grow bg-slate-300 shadow-inner'>{children}</main>
+      <main className='flex-grow bg-slate-800 shadow-inner'>{children}</main>
       <Footer />
     </div>
   )
