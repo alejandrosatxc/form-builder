@@ -8,13 +8,14 @@ const Upload = () => {
 
     return (
         <>
-            <div className='flex flex-col justify-center place-items-center w-full h-72 '>
+            <div className="flex flex-col bg-[url('/hero.jpg')] bg-bottom bg-cover justify-center place-items-center w-full">
+                {/* <img src="hero.jpg" /> */}
                 {Gdoc
                     ? <div className='absolute top-24'><TemplateAnalysis setGdoc={setGdoc} Gdoc={Gdoc} /></div>
                     : <div className='relative top-36'><GDocUploader setGdoc={setGdoc} /></div>
                 }
             </div>
-            <div className='w-full h-96 shadow-inner bg-slate-700'>
+            <div className='w-full h-96 shadow-inner bg-slate-800'>
 
             </div>
         </>

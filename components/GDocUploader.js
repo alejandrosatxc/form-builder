@@ -87,7 +87,7 @@ const GDocUploader = ({ setGdoc }) => {
                 pattern="https://.*" size="30"
                 required>
             </input>
-            <button onClick={handleGdocSubmit} className="rounded-full transition ease-in-out delay-50 bg-primary text-white shadow-bump h-14 w-4/5 mb-8 mt-2 p-4 mx-auto" type="submit">
+            <button onClick={handleGdocSubmit} className="rounded-full transition ease-in-out delay-50 bg-gradient-to-r from-fuchsia-700 to-violet-700  text-white shadow-bump h-14 w-4/5 mb-8 mt-2 p-4 mx-auto" type="submit">
                 Submit <FontAwesomeIcon className={loading ? "animate-spin" : "hidden" } icon={faCircleNotch}/>
             </button>
             <div className={error.message ? activeError : inactiveError}>
