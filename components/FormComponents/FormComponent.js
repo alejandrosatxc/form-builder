@@ -34,7 +34,7 @@ const FormComponent = ({ name, type, id}) => {
 
     return (
         <li
-            className="flex flex-col justify-left bg-white border-slate-300 h-auto w-auto my-2 rounded-lg transition ease-in-out duration-500 hover:shadow-xl hover:border p-4"
+            className="flex flex-col justify-left bg-white border border-white h-auto w-auto my-2 rounded-lg transition ease-in-out duration-500 hover:shadow-xl hover:border-slate-300 p-4"
             ref={drag}
             style={{
                 opacity: isDragging ? 0.5 : 1
