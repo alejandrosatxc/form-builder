@@ -8,6 +8,8 @@ import Checkboxes from "./Checkboxes"
 
 const FormComponent = ({ name, type, id}) => {
 
+    const [title, setTitle] = useState(name)
+
     var component;
 
     switch (type) {

@@ -6,7 +6,9 @@ const Components = () => {
     return (
         <div className="flex flex-col h-fit justify-center place-items-center">
             <div className="flex place-items-center justify-center w-full h-16 bg-yellow-400 border-yellow-500 border-2">This is where we can discuss and refine the look, feel, and functionality of different UI elements</div>
-            <GDocUploader />
+            <div className="my-8" >
+                <GDocUploader />
+            </div>
             <TemplateAnalysis />
             <FormComponentsTray />
             <div className="flex flex-col">
