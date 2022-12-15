@@ -10,7 +10,7 @@ const Upload = () => {
         <>
             <div className="relative flex flex-col bg-[url('/hero.jpg')] bg-bottom bg-cover justify-center place-items-center h-80 w-full">
                 <h1 className='text-white text-6xl mb-4 mx-4'>DraftMe away. To the future.</h1>
-                <div className="absolute top-56" >
+                <div className="absolute top-56 mx-4" >
                     <GDocUploader setGdoc={setGdoc} />
                 </div>
                 {/* {Gdoc

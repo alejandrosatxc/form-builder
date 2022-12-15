@@ -45,10 +45,10 @@ const TemplateAnalysis = ({ Gdoc, setGdoc }) => {
     const inactiveTextToggle = "text-slate-500 hover:text-primary text-xl w-14 ml-8 mr-2 my-4"
 
     return (
-        <div className="flex flex-col justify-center bg-slate-900  border-t-4 border-primary rounded-xl shadow-xl my-8 min-w-[550px]">
+        <div className="flex flex-col justify-center bg-slate-900  border-t-4 border-primary rounded-xl shadow-xl my-8 w-4/5 max-w-[550px]">
             <h2 className="text-lg text-slate-400 mt-8 mb-2 mx-8">Template Analysis</h2>
             <h1 className="text-4xl text-white mt-2 mb-4 mx-8"><FontAwesomeIcon icon={faFileLines} className="mr-4" size="sm" />{GdocData.title}</h1>
-            <div className="flex flex-row justify-center w-full">
+            <div className="flex flex-row md:flex-nowrap flex-wrap justify-center w-full">
                 <DataDisplay value={GdocData.uniqueMatches.length} description="Unique Fields Identified" />
                 <DataDisplay value={GdocData.matches.length} description="Total Fields" />
             </div>
@@ -64,9 +64,9 @@ const TemplateAnalysis = ({ Gdoc, setGdoc }) => {
                 </ol>
             </div>
 
-            <div className="flex flex-row bg-slate-900 rounded-b-lg w-full justify-end py-4 px-4">
-                <button onClick={handleNewDocument} className="bold text-primary h-12 w-18 p-2 mx-2 rounded-full">New Document</button>
-                <button onClick={handleFormGeneration} className="transition ease-in-out delay-50 bg-primary text-slate-100 shadow-2xl h-12 w-18 p-2 mx-2 rounded-full">Generate Form</button>
+            <div className="flex flex-row md:flex-nowrap flex-wrap-reverse bg-slate-900 rounded-b-lg w-full justify-end py-4 px-4">
+                <button onClick={handleNewDocument} className="bold text-primary h-12 w-full md:w-fit p-2 mx-2 rounded-full">New Document</button>
+                <button onClick={handleFormGeneration} className="bg-primary text-slate-100 shadow-2xl h-12 w-full md:w-fit p-2 mx-2 rounded-full">Generate Form</button>
             </div>
         </div>
     )
@@ -74,7 +74,7 @@ const TemplateAnalysis = ({ Gdoc, setGdoc }) => {
 
 const DataDisplay = ({ value, description }) => {
     return (
-        <div className='rounded bg-slate-800 mx-8 p-2 h-20 w-1/2'>
+        <div className='rounded bg-slate-800 mx-8 p-2 my-2 h-20 w-full'>
             <h2 className='text-white text-3xl'>{value}</h2>
             <p className='text-white'>{description}</p>
         </div>
