@@ -2,7 +2,7 @@ const Checkboxes = ({ id }) => {
 
     return (
         <>
-            <div className="flex flex-row">
+            <div className="flex flex-row flex-wrap">
                 <input className="text-black" type="checkbox" id={id + '-c_html'} name="fav_language" value="HTML"></input>
                 <label className="text-black ml-2 mr-4" htmlFor={id + '-c_html'}>HTML</label>
                 <input className="text-black" type="checkbox" id={id + '-c_css'} name="fav_language" value="CSS"></input>

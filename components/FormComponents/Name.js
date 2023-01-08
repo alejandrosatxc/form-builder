@@ -4,7 +4,7 @@ const Name = ({ title, id }) => {
 
     return (
         <>
-            <div className="flex flex-row">
+            <div className="flex flex-row flex-wrap">
                 <TextInput id={id} label="First"/>
                 <TextInput id={id} label="Middle" />
                 <TextInput id={id} label="Last" />

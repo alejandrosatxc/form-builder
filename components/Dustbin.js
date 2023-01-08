@@ -4,7 +4,7 @@ import { useId } from 'react'
 import FormComponent from './FormComponents/FormComponent'
 
 const style = {
-  height: '90%',
+  height: '100%',
   width: '100%',
   borderRadius: '4px',
   marginRight: '1.5rem',
