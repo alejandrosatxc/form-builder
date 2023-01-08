@@ -18,7 +18,7 @@ const CondensedComponent = ({ type, name, icon, label }) => {
     }))
 
     return (
-        <div className="flex flex-row bg-slate-500 group hover:bg-primary hover:cursor-pointer transition-colors ease-in-out duration-300 w-[300px] h-16 border-b-2 border-slate-800"
+        <div className="flex flex-row bg-slate-500 group hover:bg-primary hover:cursor-pointer transition-colors ease-in-out duration-300 h-16 border-b-2 border-slate-800"
             ref={drag}
             style={{
                 opacity: isDragging ? 0.5 : 1

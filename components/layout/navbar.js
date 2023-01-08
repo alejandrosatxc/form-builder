@@ -56,21 +56,23 @@ const Navbar = () => {
                         <FontAwesomeIcon className="text-white" icon={faBars} />
                     </div>
                 </div>
-                {menuToggle
-                    ?
+                {
+                    menuToggle
+                        ?
                         <div className="absolute right-0 top-20 z-40 flex flex-col justify-center rounded-lg m-2 p-4 bg-slate-100 opacity-90 h-fit w-1/2">
-                        <ul onClick={() => {setMenuToggle(!menuToggle)}} >
-                            {navitems.map(item => {
-                                return (
-                                    <li key={item.title} className="flex flex-col justify-center h-10 text-black">
-                                        <Link href={item.path}>{item.title}</Link>
-                                    </li>
-                                )
-                            })}
-                        </ul>
-                    </div>
-                    :
-                    null}
+                            <ul onClick={() => { setMenuToggle(!menuToggle) }} >
+                                {navitems.map(item => {
+                                    return (
+                                        <li key={item.title} className="flex flex-col justify-center h-10 text-black">
+                                            <Link href={item.path}>{item.title}</Link>
+                                        </li>
+                                    )
+                                })}
+                            </ul>
+                        </div>
+                        :
+                        null
+                }
 
             </nav>
         </header>

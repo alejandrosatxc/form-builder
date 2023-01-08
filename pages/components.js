@@ -5,8 +5,8 @@ import FormComponentsTray from "../components/FormComponentsTray"
 const Components = () => {
     return (
         <div className="flex flex-col h-fit justify-center place-items-center">
-            <div className="flex place-items-center justify-center w-full h-16 bg-yellow-400 border-yellow-500 border-2">This is where we can discuss and refine the look, feel, and functionality of different UI elements</div>
-            <div className="my-4">
+            <div className="flex place-items-center justify-center w-full h-16 p-4 bg-yellow-400 border-yellow-500 border-2">This is where we can discuss and refine the look, feel, and functionality of different UI elements</div>
+            <div className="my-4 mx-4 relative">
                 <GDocUploader />
             </div>
             <TemplateAnalysis />

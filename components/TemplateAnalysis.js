@@ -1,13 +1,11 @@
-import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { extractFields } from '../lib/getGdocText'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFileLines, faChevronDown } from '@fortawesome/free-solid-svg-icons'
 
 
-const TemplateAnalysis = ({ Gdoc, setGdoc }) => {
+const TemplateAnalysis = ({ Gdoc, setGdocData, setModalToggle }) => {
 
-    const router = useRouter()
     const [fieldsToggle, setFieldsToggle] = useState(false)
 
     if (Gdoc) {
@@ -29,14 +27,13 @@ const TemplateAnalysis = ({ Gdoc, setGdoc }) => {
     }
 
     const handleNewDocument = () => {
-        setGdoc(null)
+        setGdocData(null)
+        setModalToggle(false)
     }
 
     const handleFormGeneration = () => {
-        router.push({
-            pathname: '/formbuilder',
-            query: GdocData
-        })
+        setGdocData(GdocData)
+        setModalToggle(false)
     }
 
     const active = "h-52 overflow-y-scroll scrollbar shadow-inner flex flex-col bg-slate-800 text-white w-full transition-height ease-in-out duration-500"
@@ -46,7 +43,10 @@ const TemplateAnalysis = ({ Gdoc, setGdoc }) => {
 
     return (
         <div className="flex flex-col justify-center bg-slate-900  border-t-4 border-primary rounded-xl shadow-xl my-8 w-4/5 max-w-[550px]">
-            <h2 className="text-lg text-slate-400 mt-8 mb-2 mx-8">Template Analysis</h2>
+            <div className="flex flex-row justify-between">
+                <h2 className="text-lg text-slate-400 mt-8 mb-2 mx-8">Template Analysis</h2>
+                <button className="text-white mr-8 hover:cursor-pointer" onClick={() => {setModalToggle(false)}}>X</button>
+            </div>
             <h1 className="text-4xl text-white mt-2 mb-4 mx-8"><FontAwesomeIcon icon={faFileLines} className="mr-4" size="sm" />{GdocData.title}</h1>
             <div className="flex flex-row md:flex-nowrap flex-wrap justify-center w-full">
                 <DataDisplay value={GdocData.uniqueMatches.length} description="Unique Fields Identified" />

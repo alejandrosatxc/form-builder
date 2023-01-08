@@ -2,7 +2,6 @@ const Checkboxes = ({ id }) => {
 
     return (
         <>
-            <h3 className="text-black text-xl">Checkboxes</h3>
             <div className="flex flex-row">
                 <input className="text-black" type="checkbox" id={id + '-c_html'} name="fav_language" value="HTML"></input>
                 <label className="text-black ml-2 mr-4" htmlFor={id + '-c_html'}>HTML</label>

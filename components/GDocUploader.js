@@ -11,18 +11,18 @@ const GDocUploader = ({ setGdoc }) => {
     const [loading, setLoading] = useState(false)
 
     const activeError = `
-        absolute top-64
+        absolute top-56
         flex flex-row justify-between place-items-center                     
-        w-full h-14 p-4 mb-6 mx-auto
+        w-full h-14 p-4 mx-auto
         bg-yellow-100 border-yellow-300 opacity-100 
         border-2 rounded-lg 
         transition-opacity ease-in duration-1000
     `
 
     const inactiveError = `
-        absolute top-64 hidden
+        absolute hidden
         flex flex-row justify-between place-items-center                     
-        w-full h-14 p-4 mb-6 mx-auto
+        w-full h-14 p-4 mx-auto
         bg-yellow-100 border-yellow-300 opacity-0
         border-2 rounded-lg 
         transition-opacity ease-out duration-200
