@@ -3,7 +3,7 @@ import { useRef, useState } from "react"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons'
 
-const GDocUploader = ({ setGdoc }) => {
+const GDocUploader = ({ setGdoc, setActiveModal }) => {
 
     const { data: session } = useSession()
     const inputRef = useRef(null)
@@ -71,6 +71,7 @@ const GDocUploader = ({ setGdoc }) => {
             .then(doc => {
                 console.log(doc)
                 setGdoc(doc)
+                if(setActiveModal !== undefined) setActiveModal('Analysis')
             })
             .catch(err => {
                 console.log(err)

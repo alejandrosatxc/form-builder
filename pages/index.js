@@ -22,10 +22,6 @@ const Upload = () => {
                 <div className="absolute top-56 mx-4" >
                     <GDocUploader setGdoc={setGdoc} />
                 </div>
-                {/* {Gdoc
-                    ? <div className='absolute top-24'><TemplateAnalysis setGdoc={setGdoc} Gdoc={Gdoc} /></div>
-                    : <div className='relative top-36'><GDocUploader setGdoc={setGdoc} /></div>
-                } */}
             </div>
             <div className='w-full h-96 shadow-inner bg-slate-800'>
 
