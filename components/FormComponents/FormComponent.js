@@ -42,13 +42,13 @@ const FormComponent = ({ name, type, id }) => {
 
     return (
         <li
-            className="flex flex-col justify-left bg-white border border-white h-auto w-auto my-2 rounded-lg transition ease-in-out duration-500 hover:shadow-xl hover:border-slate-300 p-4"
+            className="flex flex-col justify-left bg-white border border-white h-auto w-auto my-2 rounded-lg transition ease-in-out duration-500 hover:shadow-xl group hover:border-slate-300 p-4"
             ref={drag}
             style={{
                 opacity: isDragging ? 0.5 : 1
             }}
         >
-            <button onClick={() => {removeItem(formComponents => formComponents.filter(component => component.id !== id))}} className="text-red-500 bg-red-800 rounded-full w-4">X</button>
+            <button onClick={() => {removeItem(formComponents => formComponents.filter(component => component.id !== id))}} className="text-red-500 bg-red-800 rounded-full w-4 absolute self-end invisible group-hover:visible">X</button>
             <div className="bg-slate-500 rounded-full w-fit p-[4px] text-sm text-white">
                 {id}
             </div>
