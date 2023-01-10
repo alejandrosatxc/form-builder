@@ -1,5 +1,8 @@
 import { useDrop } from 'react-dnd'
 import { ItemTypes } from './FormComponents/Constants'
+import { FormBuilderContext } from './FormBuilder'
+import { useContext } from 'react'
+
 const style = {
   // height: '90%',
   width: '100%',
@@ -12,7 +15,9 @@ const style = {
   lineHeight: 'normal',
   float: 'left',
 }
-const Trashcan = ({ formComponents, setFormComponents }) => {
+const Trashcan = () => {
+
+  const [formComponents, setFormComponents] = useContext(FormBuilderContext)
   
   const removeItem = (item) => {
     setFormComponents(item)

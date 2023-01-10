@@ -1,7 +1,9 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, createContext } from 'react'
 import Dustbin from '../components/Dustbin'
 import { extractFields } from '../lib/getGdocText'
 import Trashcan from './Trashcan'
+
+export const FormBuilderContext = createContext(null)
 
 const FormBuilder = ({ GdocData }) => {
 
@@ -30,8 +32,10 @@ const FormBuilder = ({ GdocData }) => {
     return (
         <div className="flex flex-col bg-slate-800 min-h-screen min-w-0 w-full p-6">
             <textarea rows="1" className="text-6xl my-2 text-white bg-slate-800 h-20 overflow-hidden resize-none border-none outline-none" defaultValue={GdocData ? GdocData.title : "New Form"}></textarea>
-            <Dustbin formComponents={formComponents} setFormComponents={setFormComponents} />
-            <Trashcan formComponents={formComponents} setFormComponents={setFormComponents} />
+            <FormBuilderContext.Provider value={[formComponents, setFormComponents]} >
+                <Dustbin formComponents={formComponents} setFormComponents={setFormComponents} />
+                <Trashcan formComponents={formComponents} setFormComponents={setFormComponents} />
+            </FormBuilderContext.Provider>
         </div>
     )
 }

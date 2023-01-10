@@ -1,6 +1,7 @@
 import { useDrop } from 'react-dnd'
 import { ItemTypes } from './FormComponents/Constants'
-import { useId } from 'react'
+import { useContext } from 'react'
+import { FormBuilderContext } from './FormBuilder'
 import FormComponent from './FormComponents/FormComponent'
 
 const style = {
@@ -17,9 +18,9 @@ const style = {
   float: 'left',
 }
 
-const Dustbin = ({ formComponents, setFormComponents }) => {
+const Dustbin = () => {
 
-  // const id = useId()
+  const [formComponents, setFormComponents] = useContext(FormBuilderContext)
   const generateId = () => {
     const len = 10;
     var id = ''
