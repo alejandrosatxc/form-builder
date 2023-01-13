@@ -25,21 +25,18 @@ export default function FormBuilderInterface() {
 
   var modal;
 
-  switch(activeModal) {
-    case 'Upload' : modal = <GDocUploader setGdoc={setGdoc} setActiveModal={setActiveModal}/>; break;
-    case 'Analysis' : modal = <TemplateAnalysis Gdoc={Gdoc} setGdocData={setGdocData} setModalToggle={setModalToggle} />; break;
+  switch (activeModal) {
+    case 'Upload': modal = <GDocUploader setGdoc={setGdoc} setActiveModal={setActiveModal} />; break;
+    case 'Analysis': modal = <TemplateAnalysis Gdoc={Gdoc} setGdocData={setGdocData} setModalToggle={setModalToggle} />; break;
     default: break;
 
   }
-  
+
   return (
     <div className="flex flex-col h-auto w-full">
       <button className="w-16 bg-white" onClick={() => { setModalToggle(!modalToggle); setActiveModal('Upload') }}>Import new Google Doc</button>
-      <div className={modalToggle ? "flex flex-row opacity-10 bg-black w-full" : "flex flex-row w-full"}>
-        <div className="hidden md:flex">
-          <FormComponentsTray />
-        </div>
-          <FormBuilder GdocData={GdocData} />
+      <div className={modalToggle ? "opacity-10 bg-black w-full" : "w-full"}>
+        <FormBuilder GdocData={GdocData} modalToggle={modalToggle} />
       </div>
       {modalToggle ?
         <div className="fixed flex place-items-center justify-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full">

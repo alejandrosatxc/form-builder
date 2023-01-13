@@ -1,8 +1,9 @@
 import { useDrop } from 'react-dnd'
 import { ItemTypes } from './FormComponents/Constants'
-import { useContext } from 'react'
+import { useContext, useCallback } from 'react'
 import { FormBuilderContext } from './FormBuilder'
 import FormComponent from './FormComponents/FormComponent'
+import update from 'immutability-helper'
 
 const style = {
   height: '100%',
@@ -18,7 +19,7 @@ const style = {
   float: 'left',
 }
 
-const Dustbin = () => {
+const FormCanvas = () => {
 
   const [formComponents, setFormComponents] = useContext(FormBuilderContext)
   const generateId = () => {
@@ -26,12 +27,23 @@ const Dustbin = () => {
     var id = ''
     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
     const charslen = chars.length
-    for(var i = 0; i < len; i++) {
+    for (var i = 0; i < len; i++) {
       id += chars.charAt(Math.floor(Math.random() * charslen))
     }
 
     return id
   }
+
+  const moveComponent = useCallback((dragIndex, hoverIndex) => {
+    setFormComponents((formComponents) =>
+      update(formComponents, {
+        $splice: [
+          [dragIndex, 1],
+          [hoverIndex, 0, formComponents[dragIndex]],
+        ],
+      }),
+    )
+  }, [])
 
   const addItem = (item) => {
     setFormComponents(item)
@@ -42,12 +54,14 @@ const Dustbin = () => {
     accept: ItemTypes.INPUT,
     drop: (item, monitor) => {
 
-      var id = generateId()
-      
-      //Create a new object to represent the dropped component
-      const newComponent = {id : id, name: item.name, type: item.type}
-      addItem((formComponents) => [...formComponents, newComponent]) //Set formComponents array to include what it did before, and new item
-      return { name: 'Dustbin' } //Return this object to the dropped component.
+      if (item.id === 'form-component') {
+        var id = generateId()
+
+        //Create a new object to represent the dropped component
+        const newComponent = { id: id, name: item.name, type: item.type }
+        addItem((formComponents) => [...formComponents, newComponent]) //Set formComponents array to include what it did before, and new item
+        return { name: 'Dustbin' } //Return this object to the dropped component.
+      }
     },
     collect: (monitor) => ({
       isOver: monitor.isOver(),
@@ -61,19 +75,18 @@ const Dustbin = () => {
   if (isActive) {
     backgroundColor = 'darkgreen'
   } else if (canDrop) {
-    backgroundColor = 'darkkhaki' 
+    backgroundColor = 'darkkhaki'
   }
 
   return (
     <div ref={drop} style={{ ...style, backgroundColor }} data-testid="dustbin">
-      {isActive ? 'Release to drop' : 'Drag a box here'}
       <ul>
-        {formComponents.map((component) => {
-          return <FormComponent key={component.id} name={component.name} type={component.type} id={component.id}/>
+        {formComponents.map((component, i) => {
+          return <FormComponent key={component.id} index={i} name={component.name} type={component.type} id={component.id} moveComponent={moveComponent} />
         })}
       </ul>
     </div>
   )
 }
 
-export default Dustbin
+export default FormCanvas
