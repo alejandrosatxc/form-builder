@@ -77,7 +77,7 @@ const FormComponent = ({ name, type, id, index, moveComponent}) => {
       const [{ isDragging }, drag] = useDrag({
         type: ItemTypes.INPUT,
         item: () => {
-          return { id, index }
+          return { name, id, index }
         },
         collect: (monitor) => ({
           isDragging: monitor.isDragging(),

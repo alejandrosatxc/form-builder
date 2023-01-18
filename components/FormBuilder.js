@@ -1,8 +1,9 @@
-import { useEffect, useState, createContext } from 'react'
+import { useEffect, useState, createContext, useCallback} from 'react'
 import FormCanvas from './FormCanvas'
-import { extractFields } from '../lib/getGdocText'
 import Trashcan from './Trashcan'
 import FormComponentsTray from './FormComponentsTray'
+import update from 'immutability-helper'
+
 
 export const FormBuilderContext = createContext(null)
 
@@ -26,9 +27,6 @@ const FormBuilder = ({ GdocData, modalToggle }) => {
             setFormComponents(array)
         }
     }, [GdocData])
-
-
-
 
     return (
         <div className="flex flex-col bg-slate-800 min-h-screen min-w-0 w-full">
