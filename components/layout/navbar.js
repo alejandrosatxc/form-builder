@@ -9,7 +9,6 @@ import { faBars } from '@fortawesome/free-solid-svg-icons'
 
 const Navbar = () => {
 
-
     const router = useRouter()
     const { data: session } = useSession()
     const [toggle, setToggle] = useState(false)
@@ -19,6 +18,7 @@ const Navbar = () => {
 
     const navitems = [
         { title: "Form Builder", path: "/formbuilder" },
+        { title: "Dashboard", path: "/dashboard"},
         { title: "Upload", path: "/" },
         { title: "Components", path: "/components" }
     ]

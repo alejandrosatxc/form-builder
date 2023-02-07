@@ -7,7 +7,7 @@ import update from 'immutability-helper'
 
 const CondensedComponent = ({ type, name, icon, label }) => {
 
-  const [formComponents, setFormComponents] = useContext(FormBuilderContext)
+  //const [formComponents, setFormComponents] = useContext(FormBuilderContext)
 
   const ref = useRef()
   const id = 'form-component'
