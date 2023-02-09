@@ -4,10 +4,12 @@ import FormComponentsTray from '../components/FormComponentsTray'
 import FormBuilder from '../components/FormBuilder'
 import TemplateAnalysis from '../components/TemplateAnalysis'
 import GDocUploader from '../components/GDocUploader'
+import { useAppContext } from './_app'
 
 export default function FormBuilderInterface() {
 
-  const [Gdoc, setGdoc] = useState(null)
+  //const [Gdoc, setGdoc] = useState(null)
+  const {Gdoc, setGdoc} = useAppContext()
   const [GdocData, setGdocData] = useState(null)
   const [modalToggle, setModalToggle] = useState(false)
   const [activeModal, setActiveModal] = useState('')

@@ -2,13 +2,19 @@ import { useSession} from "next-auth/react"
 import { useRef, useState } from "react"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons'
+import { useAppContext }  from '../pages/_app'
 
-const GDocUploader = ({ setGdoc, setActiveModal }) => {
+type GDocUploaderProps = {
+    setActiveModal?: any
+}
+
+const GDocUploader = ({ setActiveModal } : GDocUploaderProps) => {
 
     const { data: session } = useSession()
     const inputRef = useRef(null)
     const [error, setError] = useState({message: null})
     const [loading, setLoading] = useState(false)
+    const { setGdoc } = useAppContext()
 
     const activeError = `
         absolute top-56
@@ -85,7 +91,7 @@ const GDocUploader = ({ setGdoc, setActiveModal }) => {
             <label className="text-3xl text-slate-700 my-2 mx-auto h-8 hidden" htmlFor="url">Paste a Google Doc URL</label>
             <input className="rounded-full shadow-well text-lg placeholder-indigo-600 bg-indigo-300 border-indigo-300 border-0 mt-8 mb-4 mx-auto h-14 p-4 w-4/5" ref={inputRef} type="url" name="url" id="url"
                 placeholder="Paste a Google Doc URL"
-                pattern="https://.*" size="30"
+                pattern="https://.*" size={30}
                 required>
             </input>
             <button onClick={handleGdocSubmit} className="rounded-full transition ease-in-out delay-50 bg-gradient-to-r from-fuchsia-700 to-violet-700  text-white shadow-bump h-14 w-4/5 mb-8 mt-2 p-4 mx-auto" type="submit">
