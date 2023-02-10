@@ -4,21 +4,27 @@ import Trashcan from './Trashcan'
 import FormComponentsTray from './FormComponentsTray'
 import update from 'immutability-helper'
 import { useAppContext } from '../pages/_app'
+import { useFormBuilderContext, FormComponent } from '../pages/formbuilder'
 
 
 export const FormBuilderContext = createContext(null)
 
 const FormBuilder = ({ modalToggle }) => {
 
-    const [formComponents, setFormComponents] = useState([])
+    const { setFormComponents} = useFormBuilderContext()
     const { GdocData } = useAppContext()
-    var title = "New Form"
+    const [title, setTitle] = useState("New Form")
+
+    const handleChange = (e) => {
+        setTitle(e.target.value)
+    }
     useEffect(() => {
+        var array = []
+        setTitle("New Form")
         if (GdocData) {
-            title = GdocData.title
-            var formComponent = {}
+            setTitle(GdocData.title)
+            var formComponent: FormComponent = null
             const types = ['name', 'contact', 'checkbox', 'radio']
-            var array = []
             GdocData.uniqueMatches.forEach((match) => {
                 formComponent = {
                     name: match,
@@ -33,17 +39,15 @@ const FormBuilder = ({ modalToggle }) => {
 
     return (
         <div className="flex flex-col bg-slate-800 min-h-screen min-w-0 w-full">
-            <FormBuilderContext.Provider value={[formComponents, setFormComponents]} >
                 <div className="flex flex-row w-full">
                     <div className="hidden md:flex">
                         <FormComponentsTray />
                     </div>
                     <div className="flex flex-col w-full mx-4 min-h-screen">
-                        <input value={GdocData ? GdocData.title : "New Form"} type="text" className="text-6xl w-full my-2 text-white bg-slate-800 h-20 overflow-hidden resize-none border-none outline-none" />
+                        <input onChange={handleChange} value={title} type="text" className="text-6xl w-full my-2 text-white bg-slate-800 h-20 overflow-hidden resize-none border-none outline-none" />
                         <FormCanvas />
                     </div>
                 </div>
-            </FormBuilderContext.Provider>
         </div>
     )
 }
