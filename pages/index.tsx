@@ -1,13 +1,6 @@
-import { useState, useEffect } from 'react'
-import { useRouter } from 'next/router'
 import GDocUploader from '../components/GDocUploader'
-import { useContext } from 'react'
-import { useAppContext }  from './_app'
 
 const Upload = () => {
-
-    const router = useRouter()
-    const { Gdoc } = useAppContext()
 
     return (
         <>

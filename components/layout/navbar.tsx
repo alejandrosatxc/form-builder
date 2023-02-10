@@ -1,11 +1,9 @@
 import Link from "next/link"
-import Image from "next/image"
 import { useRouter } from "next/router"
 import { useState } from "react"
 import { useSession, signIn, signOut } from "next-auth/react"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
-
 
 const Navbar = () => {
 
@@ -18,7 +16,7 @@ const Navbar = () => {
 
     const navitems = [
         { title: "Form Builder", path: "/formbuilder" },
-        { title: "Dashboard", path: "/dashboard"},
+        { title: "Dashboard", path: "/dashboard" },
         { title: "Upload", path: "/" },
         { title: "Components", path: "/components" }
     ]

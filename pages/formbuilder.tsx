@@ -1,6 +1,5 @@
 import { useState, useEffect, createContext, useContext } from 'react'
 import { useRouter } from 'next/router'
-import FormComponentsTray from '../components/FormComponentsTray'
 import FormBuilder from '../components/FormBuilder'
 import TemplateAnalysis from '../components/TemplateAnalysis'
 import GDocUploader from '../components/GDocUploader'
@@ -30,8 +29,6 @@ export default function FormBuilderInterface() {
   const [formComponents, setFormComponents] = useState<FormComponent[]>([])
   const [modalToggle, setModalToggle] = useState(false)
   const [activeModal, setActiveModal] = useState('')
-
-  const router = useRouter()
 
   useEffect(() => {
     //On component load, check if there's already an existing Gdoc
