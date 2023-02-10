@@ -1,8 +1,13 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFileLines } from '@fortawesome/free-solid-svg-icons'
 
+interface Form {
+    title: string,
+    id: string
+}
+
 export default function Dashboard() {
-    const forms = [
+    const forms : Form[] = [
         {title: 'Intake Form', id: '1'},
         {title: 'Estate', id: '2'},
         {title: 'HIPPA', id: '3'},

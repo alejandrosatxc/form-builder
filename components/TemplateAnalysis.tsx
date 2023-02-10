@@ -3,13 +3,8 @@ import { extractFields } from '../lib/getGdocText'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFileLines, faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import { useAppContext } from '../pages/_app'
+import { GoogleDocData } from '../pages/_app'
 
-interface GoogleDocData {
-    matches:  string[],
-    uniqueMatches: string[]
-    title: string,
-    id: string
-}
 type Fields = {
     matches: string[],
     uniqueMatches: string[]

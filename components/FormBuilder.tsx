@@ -1,4 +1,4 @@
-import { useEffect, useState, createContext, useCallback} from 'react'
+import { useEffect, useState, createContext, useCallback } from 'react'
 import FormCanvas from './FormCanvas'
 import Trashcan from './Trashcan'
 import FormComponentsTray from './FormComponentsTray'
@@ -11,7 +11,7 @@ export const FormBuilderContext = createContext(null)
 const FormBuilder = ({ modalToggle }) => {
 
     const [formComponents, setFormComponents] = useState([])
-    const {GdocData} = useAppContext()
+    const { GdocData } = useAppContext()
     var title = "New Form"
     useEffect(() => {
         if (GdocData) {
