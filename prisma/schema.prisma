@@ -11,20 +11,21 @@ datasource db {
 }
 
 model Form {
-  id        String  @default(cuid()) @id
+  id        String  @id @default(cuid())
   title     String
-  content   String?
+  content   Json?
   published Boolean @default(false)
   author    User?   @relation(fields: [authorId], references: [id])
   authorId  String?
 }
 
 model User {
-  id        String    @default(cuid()) @id
+  id        String   @id @default(cuid())
   name      String?
-  email     String?   @unique
-  createdAt DateTime  @default(now()) @map(name: "created_at") //these @map modifiers are for next-auth 
-  updatedAt DateTime  @updatedAt  @map(name: "updated_at")  //something about next-auth being particular about the naming 
+  email     String?  @unique
+  createdAt DateTime @default(now()) @map(name: "created_at") //these @map modifiers are for next-auth 
+  updatedAt DateTime @updatedAt @map(name: "updated_at") //something about next-auth being particular about the naming 
   forms     Form[]
+
   @@map(name: "users")
 }
