@@ -9,17 +9,15 @@ import { useAppContext } from './_app'
 export default function FormBuilderInterface() {
 
   //const [Gdoc, setGdoc] = useState(null)
-  const {Gdoc, setGdoc} = useAppContext()
-  const [GdocData, setGdocData] = useState(null)
+  const { setGdoc, Gdoc, GdocData} = useAppContext()
   const [modalToggle, setModalToggle] = useState(false)
   const [activeModal, setActiveModal] = useState('')
 
   const router = useRouter()
 
   useEffect(() => {
-    //Check if router.query is empty object, which means no query
-    if (Object.keys(router.query).length !== 0) {
-      setGdoc(JSON.parse(router.query.data))
+    //On component load, check if there's already an existing Gdoc
+    if(Gdoc) {
       setModalToggle(true)
       setActiveModal('Analysis')
     }
@@ -28,8 +26,8 @@ export default function FormBuilderInterface() {
   var modal;
 
   switch (activeModal) {
-    case 'Upload': modal = <GDocUploader setGdoc={setGdoc} setActiveModal={setActiveModal} />; break;
-    case 'Analysis': modal = <TemplateAnalysis Gdoc={Gdoc} setGdocData={setGdocData} setModalToggle={setModalToggle} />; break;
+    case 'Upload': modal = <GDocUploader setActiveModal={setActiveModal} />; break;
+    case 'Analysis': modal = <TemplateAnalysis setModalToggle={setModalToggle} />; break;
     default: break;
 
   }

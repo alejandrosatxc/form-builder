@@ -2,6 +2,7 @@ import { useSession} from "next-auth/react"
 import { useRef, useState } from "react"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons'
+import { useRouter } from 'next/router'
 import { useAppContext }  from '../pages/_app'
 
 type GDocUploaderProps = {
@@ -10,6 +11,7 @@ type GDocUploaderProps = {
 
 const GDocUploader = ({ setActiveModal } : GDocUploaderProps) => {
 
+    const router = useRouter()
     const { data: session } = useSession()
     const inputRef = useRef(null)
     const [error, setError] = useState({message: null})
@@ -77,6 +79,10 @@ const GDocUploader = ({ setActiveModal } : GDocUploaderProps) => {
             .then(doc => {
                 console.log(doc)
                 setGdoc(doc)
+                //Check if we are already on the formbuilder page
+                if(router.pathname !== '/formbuilder') {
+                    router.push('/formbuilder')
+                }
                 if(setActiveModal !== undefined) setActiveModal('Analysis')
             })
             .catch(err => {

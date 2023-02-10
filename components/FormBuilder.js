@@ -3,16 +3,19 @@ import FormCanvas from './FormCanvas'
 import Trashcan from './Trashcan'
 import FormComponentsTray from './FormComponentsTray'
 import update from 'immutability-helper'
+import { useAppContext } from '../pages/_app'
 
 
 export const FormBuilderContext = createContext(null)
 
-const FormBuilder = ({ GdocData, modalToggle }) => {
+const FormBuilder = ({ modalToggle }) => {
 
     const [formComponents, setFormComponents] = useState([])
-
+    const {GdocData} = useAppContext()
+    var title = "New Form"
     useEffect(() => {
         if (GdocData) {
+            title = GdocData.title
             var formComponent = {}
             const types = ['name', 'contact', 'checkbox', 'radio']
             var array = []
@@ -36,7 +39,7 @@ const FormBuilder = ({ GdocData, modalToggle }) => {
                         <FormComponentsTray />
                     </div>
                     <div className="flex flex-col w-full mx-4 min-h-screen">
-                        <textarea rows="1" className="text-6xl w-full my-2 text-white bg-slate-800 h-20 overflow-hidden resize-none border-none outline-none" defaultValue={GdocData ? GdocData.title : "New Form"}></textarea>
+                        <input value={GdocData ? GdocData.title : "New Form"} type="text" className="text-6xl w-full my-2 text-white bg-slate-800 h-20 overflow-hidden resize-none border-none outline-none" />
                         <FormCanvas />
                     </div>
                 </div>

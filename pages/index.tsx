@@ -9,14 +9,6 @@ const Upload = () => {
     const router = useRouter()
     const { Gdoc } = useAppContext()
 
-    useEffect(() => {
-        if(!Gdoc) return
-        router.push({
-            pathname: '/formbuilder',
-            query: {data : JSON.stringify(Gdoc)}
-        })
-    }, [Gdoc])
-
     return (
         <>
             <div className="relative flex flex-col bg-[url('/hero.jpg')] bg-bottom bg-cover justify-center place-items-center h-80 w-full">
