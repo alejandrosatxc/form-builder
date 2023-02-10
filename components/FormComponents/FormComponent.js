@@ -1,7 +1,7 @@
 import { ItemTypes } from './Constants'
 import { useDrag, useDrop } from 'react-dnd'
 import { useContext, useId, useRef, useState } from 'react'
-import { FormBuilderContext } from '../FormBuilder'
+import { useFormBuilderContext } from '../../pages/formbuilder'
 import Name from "./Name"
 import Contact from "./Contact"
 import Radio from "./Radio"
@@ -10,7 +10,7 @@ import Checkboxes from "./Checkboxes"
 const FormComponent = ({ name, type, id, index, moveComponent}) => {
 
     const [title, setTitle] = useState(name)
-    const [formComponents, setFormComponents] = useContext(FormBuilderContext)
+    const {setFormComponents} = useFormBuilderContext()
     const ref = useRef(null)
 
     var component;

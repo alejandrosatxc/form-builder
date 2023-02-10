@@ -1,7 +1,7 @@
 import { useDrop } from 'react-dnd'
 import { ItemTypes } from './FormComponents/Constants'
-import { useContext, useCallback } from 'react'
-import { FormBuilderContext } from './FormBuilder'
+import { useCallback } from 'react'
+import { useFormBuilderContext } from '../pages/formbuilder'
 import FormComponent from './FormComponents/FormComponent'
 import update from 'immutability-helper'
 
@@ -21,7 +21,7 @@ const style = {
 
 const FormCanvas = () => {
 
-  const [formComponents, setFormComponents] = useContext(FormBuilderContext)
+  const {formComponents, setFormComponents} = useFormBuilderContext()
   const generateId = () => {
     const len = 10;
     var id = ''

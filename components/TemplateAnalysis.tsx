@@ -3,6 +3,7 @@ import { extractFields } from '../lib/getGdocText'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFileLines, faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import { useAppContext } from '../pages/_app'
+import { useFormBuilderContext } from '../pages/formbuilder'
 import { GoogleDocData } from '../pages/_app'
 
 type Fields = {
@@ -10,9 +11,10 @@ type Fields = {
     uniqueMatches: string[]
 }
 
-const TemplateAnalysis = ({ setModalToggle }) => {
+const TemplateAnalysis = ({ setModalToggle, setActiveModal }) => {
 
     const { Gdoc, setGdocData} = useAppContext()
+    const { setFormComponents } = useFormBuilderContext()
     const [fieldsToggle, setFieldsToggle] = useState(false)
 
     if (Gdoc) {
@@ -33,9 +35,10 @@ const TemplateAnalysis = ({ setModalToggle }) => {
         }
     }
 
-    const handleNewDocument = () => {
-        setGdocData(null)
-        setModalToggle(false)
+    //Go back to the upload module
+    const handleGoBack = () => {
+        setActiveModal("Upload")
+        //setGdocData(null)
     }
 
     const handleFormGeneration = () => {
@@ -72,7 +75,7 @@ const TemplateAnalysis = ({ setModalToggle }) => {
             </div>
 
             <div className="flex flex-row md:flex-nowrap flex-wrap-reverse bg-slate-900 rounded-b-lg w-full justify-end py-4 px-4">
-                <button onClick={handleNewDocument} className="bold text-primary h-12 w-full md:w-fit p-2 mx-2 rounded-full">New Document</button>
+                <button onClick={handleGoBack} className="bold text-primary h-12 w-full md:w-fit p-2 mx-2 rounded-full">Go Back</button>
                 <button onClick={handleFormGeneration} className="bg-primary text-slate-100 shadow-2xl h-12 w-full md:w-fit p-2 mx-2 rounded-full">Generate Form</button>
             </div>
         </div>
