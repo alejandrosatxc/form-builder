@@ -1,5 +1,4 @@
-import { useState, useEffect, createContext, useContext } from 'react'
-import { useRouter } from 'next/router'
+import { useState, createContext, useContext } from 'react'
 import FormBuilder from '../components/FormBuilder'
 import TemplateAnalysis from '../components/TemplateAnalysis'
 import GDocUploader from '../components/GDocUploader'
@@ -25,24 +24,14 @@ export const useFormBuilderContext = () => useContext(FormBuilderContext)
 
 export default function FormBuilderInterface() {
 
-  const { Gdoc, setGdocData } = useAppContext()
+  const { setGdoc, setGdocData, activeModal, setActiveModal, modalToggle, setModalToggle } = useAppContext()
   const [formComponents, setFormComponents] = useState<FormComponent[]>([])
-  const [modalToggle, setModalToggle] = useState(false)
-  const [activeModal, setActiveModal] = useState('')
 
-  useEffect(() => {
-    //On component load, check if there's already an existing Gdoc
-    if (Gdoc) {
-      setModalToggle(true)
-      setActiveModal('Analysis')
-    }
-  }, [])
-
-  var modal;
+  var modal : any;
 
   switch (activeModal) {
-    case 'Upload': modal = <GDocUploader setActiveModal={setActiveModal} />; break;
-    case 'Analysis': modal = <TemplateAnalysis setModalToggle={setModalToggle} setActiveModal={setActiveModal}/>; break;
+    case 'Upload': modal = <GDocUploader />; break;
+    case 'Analysis': modal = <TemplateAnalysis />; break;
     default: break;
 
   }
@@ -50,7 +39,7 @@ export default function FormBuilderInterface() {
   return (
     <div className="flex flex-col h-auto w-full">
       <button className="w-16 bg-white" onClick={() => { setModalToggle(!modalToggle); setActiveModal('Upload') }}>Import new Google Doc</button>
-      <button className="w-16 bg-white" onClick={() => { setFormComponents([]); setGdocData(null) }}>Clear Form</button>
+      <button className="w-16 bg-white" onClick={() => { setFormComponents([]); setGdocData(null); setGdoc(null) }}>Clear Form</button>
       <FormBuilderContext.Provider value={{ formComponents, setFormComponents }}>
         <div className={modalToggle ? "opacity-10 bg-black w-full" : "w-full"}>
           <FormBuilder modalToggle={modalToggle} />

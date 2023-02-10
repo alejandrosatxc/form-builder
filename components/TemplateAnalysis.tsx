@@ -11,9 +11,9 @@ type Fields = {
     uniqueMatches: string[]
 }
 
-const TemplateAnalysis = ({ setModalToggle, setActiveModal }) => {
+const TemplateAnalysis = () => {
 
-    const { Gdoc, setGdocData} = useAppContext()
+    const { Gdoc, setGdocData, setActiveModal, setModalToggle} = useAppContext()
     const { setFormComponents } = useFormBuilderContext()
     const [fieldsToggle, setFieldsToggle] = useState(false)
 

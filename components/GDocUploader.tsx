@@ -5,18 +5,14 @@ import { faCircleNotch } from '@fortawesome/free-solid-svg-icons'
 import { useRouter } from 'next/router'
 import { useAppContext }  from '../pages/_app'
 
-type GDocUploaderProps = {
-    setActiveModal?: any
-}
-
-const GDocUploader = ({ setActiveModal } : GDocUploaderProps) => {
+const GDocUploader = () => {
 
     const router = useRouter()
     const { data: session } = useSession()
     const inputRef = useRef(null)
     const [error, setError] = useState({message: null})
     const [loading, setLoading] = useState(false)
-    const { setGdoc } = useAppContext()
+    const { setGdoc, setActiveModal, setModalToggle } = useAppContext()
 
     const activeError = `
         absolute top-56
@@ -83,7 +79,8 @@ const GDocUploader = ({ setActiveModal } : GDocUploaderProps) => {
                 if(router.pathname !== '/formbuilder') {
                     router.push('/formbuilder')
                 }
-                if(setActiveModal !== undefined) setActiveModal('Analysis')
+                setActiveModal('Analysis')
+                setModalToggle(true)
             })
             .catch(err => {
                 console.log(err)

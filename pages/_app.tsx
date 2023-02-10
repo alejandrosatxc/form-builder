@@ -16,13 +16,21 @@ export interface AppContent {
   setGdoc: (g: any) => void,
   GdocData: GoogleDocData,
   setGdocData: (g: any) => void,
+  activeModal: string,
+  setActiveModal: (g: any) => void,
+  modalToggle: boolean,
+  setModalToggle: (g: any) => void
 }
 
 export const AppContext = createContext<AppContent>({
   Gdoc: null, //set default values
   setGdoc: () => {},
   GdocData: null,
-  setGdocData: () => {}
+  setGdocData: () => {},
+  activeModal: '',
+  setActiveModal: () => {},
+  modalToggle: false,
+  setModalToggle: () => {}
 })
 
 export const useAppContext = () => useContext(AppContext)
@@ -30,11 +38,13 @@ export const useAppContext = () => useContext(AppContext)
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   const [Gdoc, setGdoc] = useState<AppContent>(null)
   const [GdocData, setGdocData] = useState<GoogleDocData>(null)
+  const [activeModal, setActiveModal] = useState('')
+  const [modalToggle, setModalToggle] = useState(false)
 
   return (
     <SessionProvider session={session}>
       <DndProvider backend={HTML5Backend}>
-        <AppContext.Provider value={{Gdoc, setGdoc, GdocData, setGdocData}}>
+        <AppContext.Provider value={{Gdoc, setGdoc, GdocData, setGdocData, activeModal, setActiveModal, modalToggle, setModalToggle}}>
           <Layout>
             <Component {...pageProps} />
           </Layout>
