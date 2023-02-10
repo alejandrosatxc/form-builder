@@ -4,6 +4,7 @@ import { useState } from "react"
 import { useSession, signIn, signOut } from "next-auth/react"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
+import { useAppContext } from "../../pages/_app"
 
 const Navbar = () => {
 
@@ -11,6 +12,7 @@ const Navbar = () => {
     const { data: session } = useSession()
     const [toggle, setToggle] = useState(false)
     const [menuToggle, setMenuToggle] = useState(false)
+    const {setActiveModal, setModalToggle} = useAppContext()
     //Figure out how to flip this value on an error message firing
     const pingSignin = false
 
@@ -29,7 +31,7 @@ const Navbar = () => {
                 <ul className="hidden md:flex flex-row w-1/2 h-full justify-center place-items-center">
                     {navitems.map(item => {
                         return (
-                            <li key={item.title} className={router.pathname === item.path ? activeClasses : inactiveClasses}>
+                            <li onClick={()=>{setActiveModal(''); setModalToggle(false)}}key={item.title} className={router.pathname === item.path ? activeClasses : inactiveClasses}>
                                 <Link href={item.path}>{item.title}</Link>
                             </li>
                         )
