@@ -2,15 +2,27 @@ import { useState } from 'react'
 import { extractFields } from '../lib/getGdocText'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFileLines, faChevronDown } from '@fortawesome/free-solid-svg-icons'
+import { useAppContext } from '../pages/_app'
 
+interface GoogleDocData {
+    matches:  string[],
+    uniqueMatches: string[]
+    title: string,
+    id: string
+}
+type Fields = {
+    matches: string[],
+    uniqueMatches: string[]
+}
 
-const TemplateAnalysis = ({ Gdoc, setGdocData, setModalToggle }) => {
+const TemplateAnalysis = ({ setModalToggle }) => {
 
+    const { Gdoc, setGdocData} = useAppContext()
     const [fieldsToggle, setFieldsToggle] = useState(false)
 
     if (Gdoc) {
-        const fields = extractFields(Gdoc)
-        var GdocData = {
+        const fields : Fields = extractFields(Gdoc)
+        var GdocData : GoogleDocData = {
             matches: fields.matches,
             uniqueMatches: fields.uniqueMatches,
             title: Gdoc.title,
@@ -18,7 +30,7 @@ const TemplateAnalysis = ({ Gdoc, setGdocData, setModalToggle }) => {
         }
         console.log(GdocData)
     } else {
-        var GdocData = {
+        var GdocData : GoogleDocData = {
             matches: [],
             uniqueMatches: [],
             title: "Title",

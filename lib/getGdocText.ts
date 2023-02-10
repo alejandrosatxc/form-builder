@@ -1,3 +1,4 @@
+
 /**
    * Returns the text in the given ParagraphElement.
    *
