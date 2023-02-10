@@ -9,7 +9,7 @@ const Components = () => {
             <div className="my-4 mx-4 relative">
                 <GDocUploader />
             </div>
-            <TemplateAnalysis setModalToggle={() => {}} setActiveModal={() => {}}/>
+            <TemplateAnalysis />
             <FormComponentsTray />
             {/* <div className="flex flex-col">
                 <FormComponent name="Name Input" type="name" id="name-tray" />
