@@ -42,7 +42,7 @@ export default function FormBuilderInterface() {
       <button className="w-16 bg-white" onClick={() => { setFormComponents([]); setGdocData(null); setGdoc(null) }}>Clear Form</button>
       <FormBuilderContext.Provider value={{ formComponents, setFormComponents }}>
         <div className={modalToggle ? "opacity-10 bg-black w-full" : "w-full"}>
-          <FormBuilder modalToggle={modalToggle} />
+          <FormBuilder />
         </div>
         {modalToggle ?
           <div className="fixed flex place-items-center justify-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full">

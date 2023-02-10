@@ -9,7 +9,7 @@ import { useFormBuilderContext, FormComponent } from '../pages/formbuilder'
 
 export const FormBuilderContext = createContext(null)
 
-const FormBuilder = ({ modalToggle }) => {
+const FormBuilder = () => {
 
     const { setFormComponents} = useFormBuilderContext()
     const { GdocData } = useAppContext()
