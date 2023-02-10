@@ -16,12 +16,15 @@ export const authOptions = {
                 access_type: "offline",
                 response_type: "code",
                 url: 'https://accounts.google.com/o/oauth2/v2/auth',
-                params: { scope: 'openid email profile https://www.googleapis.com/auth/documents https://www.googleapis.com/auth/documents.readonly'}
+                params: { scope: 'openid email profile https://www.googleapis.com/auth/documents https://www.googleapis.com/auth/documents.readonly' }
             }
         }),
 
         // ...add more providers here
     ],
+    session: {
+        strategy: "jwt",
+    },
     secret: process.env.JWT_SECRET,
     callbacks: {
         async jwt({ token, account, profile }) {
