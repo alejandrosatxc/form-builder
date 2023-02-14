@@ -49,6 +49,7 @@ const GDocUploader = () => {
          }
         if(!session.accessToken) { 
             setError({message: 'Try Signing out, then Sign in again'})
+            console.log(session)
             setLoading(false)
             return
         }
@@ -75,6 +76,7 @@ const GDocUploader = () => {
             .then(doc => {
                 console.log(doc)
                 setGdoc(doc)
+                console.log(session)
                 //Check if we are already on the formbuilder page
                 if(router.pathname !== '/formbuilder') {
                     router.push('/formbuilder')
