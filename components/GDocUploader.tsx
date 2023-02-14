@@ -1,4 +1,4 @@
-import { useSession} from "next-auth/react"
+import { getSession} from "next-auth/react"
 import { useRef, useState } from "react"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons'
@@ -8,7 +8,6 @@ import { useAppContext }  from '../pages/_app'
 const GDocUploader = () => {
 
     const router = useRouter()
-    const { data: session } = useSession()
     const inputRef = useRef(null)
     const [error, setError] = useState({message: null})
     const [loading, setLoading] = useState(false)
@@ -32,7 +31,11 @@ const GDocUploader = () => {
         transition-opacity ease-out duration-200
     `
 
-    const handleGdocSubmit = () => {
+    const handleGdocSubmit = async () => {
+
+        const session  = await getSession()
+
+        console.log(session)
         setLoading(true)
         var userInput = inputRef.current.value
 
@@ -74,9 +77,9 @@ const GDocUploader = () => {
                 return res.json()
             })
             .then(doc => {
-                console.log(doc)
+                //console.log(doc)
                 setGdoc(doc)
-                console.log(session)
+                //console.log(session)
                 //Check if we are already on the formbuilder page
                 if(router.pathname !== '/formbuilder') {
                     router.push('/formbuilder')

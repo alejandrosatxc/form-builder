@@ -24,7 +24,7 @@ export default function FormBuilderInterface() {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault()
-    console.log(session)
+    //console.log(session)
     //const content = JSON.stringify(formComponents)
 
     const result = fetch("http://localhost:3000/api/form", {
@@ -35,7 +35,7 @@ export default function FormBuilderInterface() {
       },
     })
 
-    console.log(result)
+    //console.log(result)
   }
 
   var modal: any;
@@ -49,10 +49,10 @@ export default function FormBuilderInterface() {
 
   return (
     <div className="flex flex-col h-auto w-full">
-      <div className="flex flex-row bg-slate-700 p-4 justify-start ">
-        <button className="w-32 rounded bg-yellow-500" onClick={() => { setModalToggle(!modalToggle); setActiveModal('Upload') }}>Import new Google Doc</button>
-        <button className="w-32 mx-4 rounded bg-red-500" onClick={() => { setFormComponents([]); setGdocData(null); setGdoc(null) }}>Clear Form</button>
-        <button className="w-32 rounded bg-green-500" onClick={(e) => { handleFormSubmit(e) }} >Save Form</button>
+      <div className="flex flex-row bg-slate-700 p-4">
+        <button className="w-32 rounded-full bg-yellow-500" onClick={() => { setModalToggle(!modalToggle); setActiveModal('Upload') }}>Import new Google Doc</button>
+        <button className="w-32 mx-4 rounded-full bg-red-500" onClick={() => { setFormComponents([]); setGdocData(null); setGdoc(null) }}>Clear Form</button>
+        <button className="w-32 rounded-full bg-green-500" onClick={(e) => { handleFormSubmit(e) }} >Save Form</button>
       </div>
 
       <FormBuilderContext.Provider value={{ formComponents, setFormComponents, formTitle, setFormTitle }}>

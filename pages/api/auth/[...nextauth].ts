@@ -36,6 +36,7 @@ export const authOptions : NextAuthOptions = {
             // Send properties to the client, like an access_token from a provider.
             session.accessToken = token.accessToken
             session.idToken = token.idToken
+            //console.log(session)
             return session
         }
     }
