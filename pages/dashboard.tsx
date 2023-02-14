@@ -39,7 +39,11 @@ export default function Dashboard() {
 
     if (status === "unauthenticated") {
         //TODO: Redirect to signin page
-        return <p>Access Denied</p>
+        return (
+            <div className="bg-white rounded flex flex-col place-items-center justify-center">
+                <p className="">You must be logged in first to see your dashboard!</p>
+            </div>
+        )
     }
 
     const loadUser = async () => {
@@ -74,10 +78,10 @@ export default function Dashboard() {
 
     //loadUser().then(data => setUserdata(data))
 
-    useEffect(()=>{
+    useEffect(() => {
         loadUser().then(data => setUserdata(data))
     }, [])
-    
+
     return (
         <>
             {userdata ?
