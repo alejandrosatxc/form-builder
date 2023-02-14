@@ -11,18 +11,18 @@ export const FormBuilderContext = createContext(null)
 
 const FormBuilder = () => {
 
-    const { setFormComponents} = useFormBuilderContext()
+    const { setFormComponents, formTitle, setFormTitle} = useFormBuilderContext()
     const { GdocData } = useAppContext()
-    const [title, setTitle] = useState("New Form")
+    //const [title, setTitle] = useState("New Form")
 
     const handleChange = (e) => {
-        setTitle(e.target.value)
+        setFormTitle(e.target.value)
     }
     useEffect(() => {
         var array = []
-        setTitle("New Form")
+        //setTitle("New Form")
         if (GdocData) {
-            setTitle(GdocData.title)
+            setFormTitle(GdocData.title)
             var formComponent: FormComponent = null
             const types = ['name', 'contact', 'checkbox', 'radio']
             GdocData.uniqueMatches.forEach((match) => {
@@ -44,7 +44,7 @@ const FormBuilder = () => {
                         <FormComponentsTray />
                     </div>
                     <div className="flex flex-col w-full mx-4 min-h-screen">
-                        <input onChange={handleChange} value={title} type="text" className="text-6xl w-full my-2 text-white bg-slate-800 h-20 overflow-hidden resize-none border-none outline-none" />
+                        <input onChange={handleChange} value={formTitle} type="text" className="text-6xl w-full my-2 text-white bg-slate-800 h-20 overflow-hidden resize-none border-none outline-none" />
                         <FormCanvas />
                     </div>
                 </div>

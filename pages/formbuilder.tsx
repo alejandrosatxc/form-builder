@@ -1,4 +1,5 @@
 import { useState, createContext, useContext } from 'react'
+import { useSession } from 'next-auth/react'
 import FormBuilder from '../components/FormBuilder'
 import TemplateAnalysis from '../components/TemplateAnalysis'
 import GDocUploader from '../components/GDocUploader'
@@ -7,6 +8,8 @@ import { useAppContext } from './_app'
 export interface FormContent {
   formComponents: FormComponent[],
   setFormComponents: (g: any) => void,
+  formTitle: string
+  setFormTitle: (g: any) => void
 }
 
 export interface FormComponent {
@@ -18,6 +21,8 @@ export interface FormComponent {
 export const FormBuilderContext = createContext<FormContent>({
   formComponents: [], //set default values
   setFormComponents: () => { },
+  formTitle: "",
+  setFormTitle: () => { }
 })
 
 export const useFormBuilderContext = () => useContext(FormBuilderContext)
@@ -26,8 +31,26 @@ export default function FormBuilderInterface() {
 
   const { setGdoc, setGdocData, activeModal, setActiveModal, modalToggle, setModalToggle } = useAppContext()
   const [formComponents, setFormComponents] = useState<FormComponent[]>([])
+  const [formTitle, setFormTitle] = useState<string>("New Form")
+  const {data: session} = useSession()
 
-  var modal : any;
+  const handleFormSubmit = async (e) => {
+    e.preventDefault()
+    console.log(session)
+    //const content = JSON.stringify(formComponents)
+
+    const result = fetch("http://localhost:3000/api/form", {
+      method: 'POST',
+      body: JSON.stringify({ content: formComponents, title: formTitle }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+
+    console.log(result)
+  }
+
+  var modal: any;
 
   switch (activeModal) {
     case 'Upload': modal = <GDocUploader />; break;
@@ -40,7 +63,8 @@ export default function FormBuilderInterface() {
     <div className="flex flex-col h-auto w-full">
       <button className="w-16 bg-white" onClick={() => { setModalToggle(!modalToggle); setActiveModal('Upload') }}>Import new Google Doc</button>
       <button className="w-16 bg-white" onClick={() => { setFormComponents([]); setGdocData(null); setGdoc(null) }}>Clear Form</button>
-      <FormBuilderContext.Provider value={{ formComponents, setFormComponents }}>
+      <button className="w-16 bg-green-400" onClick={(e) => { handleFormSubmit(e) }} >Save Form</button>
+      <FormBuilderContext.Provider value={{ formComponents, setFormComponents, formTitle, setFormTitle }}>
         <div className={modalToggle ? "opacity-10 bg-black w-full" : "w-full"}>
           <FormBuilder />
         </div>
