@@ -75,9 +75,6 @@ export default function Dashboard() {
 
     }
 
-
-    //loadUser().then(data => setUserdata(data))
-
     useEffect(() => {
         loadUser().then(data => setUserdata(data))
     }, [])
@@ -90,9 +87,9 @@ export default function Dashboard() {
                     <h2 className="text-white text-3xl p-4">My Forms</h2>
                     <div className="bg-white h-screen m-4 p-4 rounded">
                         <ul className="w-full h-auto flex flex-row flex-wrap text-center">
-                            {userdata.forms ?
+                            {userdata.forms.length ?
                                 userdata.forms.map((form) => <li key={form.id} onClick={() => handleFormSelect(form.id)} className="m-6 w-32 hover:cursor-pointer"><FontAwesomeIcon icon={faFileLines} size={'6x'} /><h3>{form.title}</h3></li>)
-                                : null
+                                : <h2 className="text-3xl">Looks like you don't have any forms yet, create one!</h2>
                             }
                         </ul>
                     </div>

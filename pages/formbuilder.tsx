@@ -5,6 +5,8 @@ import TemplateAnalysis from '../components/TemplateAnalysis'
 import GDocUploader from '../components/GDocUploader'
 import { useAppContext } from './_app'
 import { FormContent, FormComponent } from '../types/draftee'
+import { useRouter } from 'next/router'
+
 
 export const FormBuilderContext = createContext<FormContent>({
   formComponents: [], //set default values
@@ -21,13 +23,14 @@ export default function FormBuilderInterface() {
   const [formComponents, setFormComponents] = useState<FormComponent[]>([])
   const [formTitle, setFormTitle] = useState<string>("New Form")
   const { data: session } = useSession()
+  const router = useRouter()
 
   const handleFormSubmit = async (e) => {
     e.preventDefault()
     //console.log(session)
     //const content = JSON.stringify(formComponents)
 
-    const result = fetch("http://localhost:3000/api/form", {
+    const result = await fetch("http://localhost:3000/api/form", {
       method: 'POST',
       body: JSON.stringify({ content: formComponents, title: formTitle }),
       headers: {
@@ -35,6 +38,9 @@ export default function FormBuilderInterface() {
       },
     })
 
+    if(result.ok) {
+      router.push('/dashboard')
+    }
     //console.log(result)
   }
 
