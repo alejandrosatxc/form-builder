@@ -49,7 +49,7 @@ export default function FormBuilderInterface() {
 
   return (
     <div className="flex flex-col h-auto w-full">
-      <div className="flex flex-row bg-slate-500 p-4 justify-start ">
+      <div className="flex flex-row bg-slate-700 p-4 justify-start ">
         <button className="w-32 rounded bg-yellow-500" onClick={() => { setModalToggle(!modalToggle); setActiveModal('Upload') }}>Import new Google Doc</button>
         <button className="w-32 mx-4 rounded bg-red-500" onClick={() => { setFormComponents([]); setGdocData(null); setGdoc(null) }}>Clear Form</button>
         <button className="w-32 rounded bg-green-500" onClick={(e) => { handleFormSubmit(e) }} >Save Form</button>
