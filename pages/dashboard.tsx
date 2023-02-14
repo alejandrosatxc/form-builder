@@ -4,7 +4,6 @@ import { useSession, getSession } from "next-auth/react"
 import { useRouter } from 'next/router'
 import { useAppContext } from './_app'
 //import { GetServerSideProps } from 'next'
-import { Form } from '../types/draftee'
 
 export async function getServerSideProps() {
     // Fetch data from external API
