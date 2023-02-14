@@ -23,6 +23,11 @@ const FormBuilder = () => {
         var array = []
         //setTitle("New Form")
         if (GdocData) {
+            if(GdocData.content) {
+                setFormComponents(GdocData.content)
+                setFormTitle(GdocData.title)
+                return 
+            }
             setFormTitle(GdocData.title)
             var formComponent: FormComponent = null
             const types = ['name', 'contact', 'checkbox', 'radio']

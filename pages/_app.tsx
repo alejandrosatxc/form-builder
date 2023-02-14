@@ -4,23 +4,7 @@ import { SessionProvider } from 'next-auth/react'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import { createContext, useContext, useState } from 'react'
-
-export interface GoogleDocData {
-  matches:  string[],
-  uniqueMatches: string[]
-  title: string,
-  id: string
-}
-export interface AppContent {
-  Gdoc: any,
-  setGdoc: (g: any) => void,
-  GdocData: GoogleDocData,
-  setGdocData: (g: any) => void,
-  activeModal: string,
-  setActiveModal: (g: any) => void,
-  modalToggle: boolean,
-  setModalToggle: (g: any) => void
-}
+import { AppContent, GoogleDocData } from '../types/draftee'
 
 export const AppContext = createContext<AppContent>({
   Gdoc: null, //set default values

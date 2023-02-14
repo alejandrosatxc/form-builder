@@ -16,3 +16,21 @@ export interface Form {
     title: string
     formComponents: FormComponent[]
 }
+
+export interface GoogleDocData {
+    matches?: string[],
+    uniqueMatches?: string[]
+    title: string,
+    id: string,
+    content?: Form
+  }
+export interface AppContent {
+    Gdoc: any,
+    setGdoc: (g: any) => void,
+    GdocData: GoogleDocData,
+    setGdocData: (g: any) => void,
+    activeModal: string,
+    setActiveModal: (g: any) => void,
+    modalToggle: boolean,
+    setModalToggle: (g: any) => void
+}
