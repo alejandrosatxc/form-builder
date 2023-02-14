@@ -1,12 +1,13 @@
 -- CreateTable
-CREATE TABLE "Form" (
+CREATE TABLE "forms" (
     "id" TEXT NOT NULL,
     "title" TEXT NOT NULL,
     "content" JSONB,
     "published" BOOLEAN NOT NULL DEFAULT false,
     "authorId" TEXT,
+    "user_id" TEXT NOT NULL,
 
-    CONSTRAINT "Form_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "forms_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -71,7 +72,7 @@ CREATE UNIQUE INDEX "verificationtokens_token_key" ON "verificationtokens"("toke
 CREATE UNIQUE INDEX "verificationtokens_identifier_token_key" ON "verificationtokens"("identifier", "token");
 
 -- AddForeignKey
-ALTER TABLE "Form" ADD CONSTRAINT "Form_authorId_fkey" FOREIGN KEY ("authorId") REFERENCES "accounts"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "forms" ADD CONSTRAINT "forms_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "accounts" ADD CONSTRAINT "accounts_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE CASCADE;

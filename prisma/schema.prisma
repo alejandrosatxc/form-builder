@@ -15,8 +15,13 @@ model Form {
   title     String
   content   Json?
   published Boolean @default(false)
-  author    User?   @relation(fields: [authorId], references: [id])
+  //author    User?   @relation(fields: [authorId], references: [id])
   authorId  String?
+  userId    String  @map("user_id")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("forms")
 }
 
 model User {
