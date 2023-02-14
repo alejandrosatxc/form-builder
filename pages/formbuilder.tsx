@@ -4,19 +4,7 @@ import FormBuilder from '../components/FormBuilder'
 import TemplateAnalysis from '../components/TemplateAnalysis'
 import GDocUploader from '../components/GDocUploader'
 import { useAppContext } from './_app'
-
-export interface FormContent {
-  formComponents: FormComponent[],
-  setFormComponents: (g: any) => void,
-  formTitle: string
-  setFormTitle: (g: any) => void
-}
-
-export interface FormComponent {
-  name: string,
-  type: string,
-  id: string
-}
+import { FormContent, FormComponent } from '../types/draftee'
 
 export const FormBuilderContext = createContext<FormContent>({
   formComponents: [], //set default values

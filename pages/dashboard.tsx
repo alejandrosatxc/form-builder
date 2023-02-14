@@ -1,27 +1,24 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFileLines } from '@fortawesome/free-solid-svg-icons'
 import { useSession, getSession } from "next-auth/react"
-
-
-interface Form {
-    title: string,
-    id: string
-}
+import { GetServerSideProps } from 'next'
+import { Form } from '../types/draftee'
 
 export default function Dashboard() {
 
     const { data: session, status } = useSession()
 
-    const forms: Form[] = [
-        { title: 'Intake Form', id: '1' },
-        { title: 'Estate', id: '2' },
-        { title: 'HIPPA', id: '3' },
-        { title: 'Invitation', id: '5' },
-        { title: 'RSVP Form', id: '6' },
-        { title: 'Cancelation Form', id: '7' },
-        { title: 'Survey Form', id: '8' },
-        { title: 'Questionaire Form', id: '9' },
-    ]
+    // const forms: Form[] = [
+    //     { title: 'Intake Form', id: '1' },
+    //     { title: 'Estate', id: '2' },
+    //     { title: 'HIPPA', id: '3' },
+    //     { title: 'Invitation', id: '5' },
+    //     { title: 'RSVP Form', id: '6' },
+    //     { title: 'Cancelation Form', id: '7' },
+    //     { title: 'Survey Form', id: '8' },
+    //     { title: 'Questionaire Form', id: '9' },
+    // ]
+    const forms: Form[] = undefined
 
     if (status === 'loading') {
         return (<p>Loading...</p>)

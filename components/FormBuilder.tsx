@@ -4,7 +4,8 @@ import Trashcan from './Trashcan'
 import FormComponentsTray from './FormComponentsTray'
 import update from 'immutability-helper'
 import { useAppContext } from '../pages/_app'
-import { useFormBuilderContext, FormComponent } from '../pages/formbuilder'
+import { useFormBuilderContext } from '../pages/formbuilder'
+import { FormComponent } from '../types/draftee'
 
 
 export const FormBuilderContext = createContext(null)
@@ -26,9 +27,10 @@ const FormBuilder = () => {
             var formComponent: FormComponent = null
             const types = ['name', 'contact', 'checkbox', 'radio']
             GdocData.uniqueMatches.forEach((match) => {
+                var randomType = types[Math.floor(Math.random() * 4)],
                 formComponent = {
                     name: match,
-                    type: types[Math.floor(Math.random() * 4)],
+                    type: randomType,
                     id: match
                 }
                 array.push(formComponent)
