@@ -20,7 +20,7 @@ export default function FormBuilderInterface() {
   const { setGdoc, setGdocData, activeModal, setActiveModal, modalToggle, setModalToggle } = useAppContext()
   const [formComponents, setFormComponents] = useState<FormComponent[]>([])
   const [formTitle, setFormTitle] = useState<string>("New Form")
-  const {data: session} = useSession()
+  const { data: session } = useSession()
 
   const handleFormSubmit = async (e) => {
     e.preventDefault()
@@ -49,9 +49,12 @@ export default function FormBuilderInterface() {
 
   return (
     <div className="flex flex-col h-auto w-full">
-      <button className="w-16 bg-white" onClick={() => { setModalToggle(!modalToggle); setActiveModal('Upload') }}>Import new Google Doc</button>
-      <button className="w-16 bg-white" onClick={() => { setFormComponents([]); setGdocData(null); setGdoc(null) }}>Clear Form</button>
-      <button className="w-16 bg-green-400" onClick={(e) => { handleFormSubmit(e) }} >Save Form</button>
+      <div className="flex flex-row bg-slate-500 p-4 justify-start ">
+        <button className="w-32 rounded bg-yellow-500" onClick={() => { setModalToggle(!modalToggle); setActiveModal('Upload') }}>Import new Google Doc</button>
+        <button className="w-32 mx-4 rounded bg-red-500" onClick={() => { setFormComponents([]); setGdocData(null); setGdoc(null) }}>Clear Form</button>
+        <button className="w-32 rounded bg-green-500" onClick={(e) => { handleFormSubmit(e) }} >Save Form</button>
+      </div>
+
       <FormBuilderContext.Provider value={{ formComponents, setFormComponents, formTitle, setFormTitle }}>
         <div className={modalToggle ? "opacity-10 bg-black w-full" : "w-full"}>
           <FormBuilder />
