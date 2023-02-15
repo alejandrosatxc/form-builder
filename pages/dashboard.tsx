@@ -97,9 +97,11 @@ export default function Dashboard({ userdata }) {
                 <ul className="w-full h-auto flex flex-row flex-wrap text-center">
                     {userdata.forms.length ?
                         userdata.forms.map((form: Form) => {
-                            <li key={form.id} onClick={() => handleFormSelect(form.id)} className="m-6 w-32 hover:cursor-pointer">
-                                <FontAwesomeIcon icon={faFileLines} size={'6x'} /><h3>{form.title}</h3>
-                            </li>
+                            return (
+                                <li key={form.id} onClick={() => handleFormSelect(form.id)} className="m-6 w-32 hover:cursor-pointer">
+                                    <FontAwesomeIcon icon={faFileLines} size={'6x'} /><h3>{form.title}</h3>
+                                </li>
+                            )
                         })
                         : <h2 className="text-3xl">Looks like you don't have any forms yet, create one!</h2>
                     }
