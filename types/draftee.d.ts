@@ -1,5 +1,4 @@
 export interface FormContent {
-    formId? : string
     formComponents: FormComponent[]
     setFormComponents: (g: any) => void
     formTitle: string

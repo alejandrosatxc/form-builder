@@ -1,6 +1,10 @@
 import prisma from '../../../lib/prisma';
+import { NextApiResponse, NextApiRequest } from 'next'
+import { Form } from '@prisma/client';
 
-async function put(req, res, formId, content, title) {
+async function PUT(req: NextApiRequest, res: NextApiResponse, formId: string) {
+
+  const { content, title } = req.body
 
   const form = await prisma.form.update({
     where: {
@@ -9,6 +13,17 @@ async function put(req, res, formId, content, title) {
     data: {
       content: content,
       title: title
+    }
+  })
+
+  return form
+}
+
+async function DELETE(formId: string) {
+
+  const form = await prisma.form.delete({
+    where: {
+      id: formId
     }
   })
 
@@ -25,16 +40,18 @@ export default async function handler(req, res) {
     return
   }
 
+  let result: Form
+
   switch (req.method) {
     case 'GET':
       res.json(prismaForm)
       return
     case 'PUT':
-      console.log("PUT*************")
-      const { content, title } = req.body
-      console.log(content)
-      const result = await put(req, res, formId, content, title)
-      console.log(result)
+      result = await PUT(req, res, formId)
+      res.json(result)
+      return
+    case 'DELETE':
+      result = await DELETE(formId)
       res.json(result)
       return
     default:

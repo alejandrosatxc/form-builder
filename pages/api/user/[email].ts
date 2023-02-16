@@ -1,8 +1,8 @@
 import prisma from '../../../lib/prisma';
+import { NextApiResponse, NextApiRequest } from 'next'
 
-
-export default async function handler(req, res) {
-    const { email } = req.query
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+    const { email } = req.body
 
     const result = await prisma.user.findUnique({
       where: {

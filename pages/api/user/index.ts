@@ -4,6 +4,7 @@ import { authOptions } from "../auth/[...nextauth]"
 import prisma from '../../../lib/prisma';
 
 // GET /api/user
+//Get an access_token for a users provider
 export default async function handler(req : NextApiRequest, res: NextApiResponse) {
 
     if (req.method === 'GET') {
