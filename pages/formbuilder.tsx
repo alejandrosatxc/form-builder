@@ -32,7 +32,7 @@ export default function FormBuilderInterface() {
       return
     }
 
-    const result = await fetch("http://localhost:3000/api/form", {
+    const result = await fetch("/api/form", {
       method: 'POST',
       body: JSON.stringify({ content: formComponents, title: formTitle }),
       headers: {

@@ -70,7 +70,7 @@ export default function Dashboard({ userdata }) {
 
     //Submit a form to the back-end
     const handleFormSelect = async (formId: string) => {
-        const res = await fetch(`http://localhost:3000/api/form/${formId}`, {
+        const res = await fetch(`/api/form/${formId}`, {
             method: "GET"
         })
         const form = await res.json()
