@@ -103,7 +103,7 @@ export default function Dashboard({ userdata }) {
                                 </li>
                             )
                         })
-                        : <h2 className="text-3xl">Looks like you don't have any forms yet, create one!</h2>
+                        : <h2 className="text-3xl">Looks like you don&apos;t have any forms yet, create one!</h2>
                     }
                 </ul>
             </div>

@@ -11,6 +11,7 @@ const GDocUploader = () => {
     const inputRef = useRef(null)
     const [error, setError] = useState({ message: null })
     const [loading, setLoading] = useState(false)
+    const {data: session, status} = useSession()
     const { setGdoc, setActiveModal, setModalToggle } = useAppContext()
 
     const activeError = `
@@ -44,7 +45,6 @@ const GDocUploader = () => {
         }
 
         //Check if user is logged in
-        const {data: session, status} = useSession()
         if (status !== 'authenticated') {
             setError({ message: 'You need to login in to google first ☝️' })
             setLoading(false)
