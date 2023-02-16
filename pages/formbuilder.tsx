@@ -49,7 +49,7 @@ export default function FormBuilderInterface() {
       setLoading(false)
       router.push('/dashboard')
     }
-    setLoading(false)
+    //setLoading(false)
     //console.log(result)
   }
 
