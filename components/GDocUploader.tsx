@@ -1,4 +1,4 @@
-import { getSession } from "next-auth/react"
+import { useSession } from "next-auth/react"
 import { useRef, useState } from "react"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons'
@@ -33,8 +33,6 @@ const GDocUploader = () => {
 
     const handleGdocSubmit = async () => {
 
-        const session = await getSession()
-
         setLoading(true)
         var userInput = inputRef.current.value
 
@@ -44,8 +42,10 @@ const GDocUploader = () => {
             setLoading(false)
             return
         }
+
         //Check if user is logged in
-        if (!session) {
+        const {data: session, status} = useSession()
+        if (status !== 'authenticated') {
             setError({ message: 'You need to login in to google first ☝️' })
             setLoading(false)
             return
