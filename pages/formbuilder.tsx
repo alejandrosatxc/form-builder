@@ -32,25 +32,37 @@ export default function FormBuilderInterface() {
   const handleFormSubmit = async (e) => {
     e.preventDefault()
     setLoading(true)
-    if(status !== 'authenticated') {
+    //Check if signed in
+    if (status !== 'authenticated') {
       signIn()
       return
     }
 
-    const result = await fetch("/api/form", {
-      method: 'POST',
-      body: JSON.stringify({ content: formComponents, title: formTitle }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
+    let result = null;
+    //If this is a form that alredy exists
+    if (router.query.formId) {
+      result = await fetch(`/api/form/${router.query.formId}`, {
+        method: 'PUT',
+        body: JSON.stringify({ content: formComponents, title: formTitle }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+    } else { //Otherwise, create a new form
+      result = await fetch("/api/form", {
+        method: 'POST',
+        body: JSON.stringify({ content: formComponents, title: formTitle }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+    }
 
-    if(result.ok) {
+    //If successful, redirect to the dashboard
+    if (result.ok) {
       setLoading(false)
       router.push('/dashboard')
     }
-    //setLoading(false)
-    //console.log(result)
   }
 
   var modal: any;
@@ -66,7 +78,7 @@ export default function FormBuilderInterface() {
     <div className="flex flex-col h-auto w-full">
       <div className="flex flex-row bg-slate-700 p-4">
         <button className="w-32 rounded-full bg-yellow-500" onClick={() => { setModalToggle(!modalToggle); setActiveModal('Upload') }}>Import new Google Doc</button>
-        <button className="w-32 mx-4 rounded-full bg-red-500" onClick={() => { setFormComponents([]); setGdocData(null); setGdoc(null) }}>Clear Form</button>
+        <button className="w-32 mx-4 rounded-full bg-red-500" onClick={() => { setFormComponents([]); setGdocData(null); setGdoc(null); setFormTitle('New Form') }}>Clear Form</button>
         <button className="w-32 rounded-full bg-green-500" onClick={(e) => { handleFormSubmit(e) }} >Save Form <FontAwesomeIcon className={loading ? "animate-spin" : "hidden"} icon={faCircleNotch} /></button>
       </div>
 

@@ -81,7 +81,10 @@ export default function Dashboard({ userdata }) {
         }
 
         //render form builder with new data
-        router.push('/formbuilder')
+        router.push({
+            pathname: '/formbuilder',
+            query: { formId: formId }
+        })
         setGdocData({
             title: form.title,
             content: form.content,

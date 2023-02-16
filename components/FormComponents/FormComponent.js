@@ -10,7 +10,7 @@ import Checkboxes from "./Checkboxes"
 const FormComponent = ({ name, type, id, index, moveComponent}) => {
 
     const [title, setTitle] = useState(name)
-    const {setFormComponents} = useFormBuilderContext()
+    const {setFormComponents, formComponents} = useFormBuilderContext()
     const ref = useRef(null)
 
     var component;
@@ -99,6 +99,16 @@ const FormComponent = ({ name, type, id, index, moveComponent}) => {
     //     }),
     // }))
 
+    const handleTitleChange = (e) => {
+      //change component state
+      setTitle(e.target.value)
+      //copy global formComponents state
+      var components = [...formComponents]
+      //update the name of the component by its given index
+      components[index].name = e.target.value
+      //update gloval formComponents state
+      setFormComponents(components)
+    }
 
     return (
         <li
@@ -113,7 +123,7 @@ const FormComponent = ({ name, type, id, index, moveComponent}) => {
             {/* <div className="bg-slate-500 rounded-full w-fit p-[4px] text-sm text-white">
                 {id}
             </div> */}
-            <input type="text" id={id} value={title} onChange={e => setTitle(e.target.value)} className="w-full text-black text-xl focus:outline-none" ></input>
+            <input type="text" id={id} value={title} onChange={handleTitleChange} className="w-full text-black text-xl focus:outline-none" ></input>
             <div className="flex flex-col justify-left place-items-start w-auto">{component}</div>
         </li>
     )
