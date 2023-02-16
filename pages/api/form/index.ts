@@ -1,3 +1,4 @@
+import { NextApiResponse, NextApiRequest } from 'next'
 import { getServerSession } from "next-auth/next"
 import prisma from '../../../lib/prisma';
 import { authOptions } from "../auth/[...nextauth]";
@@ -5,7 +6,7 @@ import { authOptions } from "../auth/[...nextauth]";
 // POST /api/form
 // Required fields in body: title
 // Optional fields in body: content
-export default async function handler(req, res) {
+export default async function handler(req : NextApiRequest, res : NextApiResponse) {
 
   //Get session cookie from request and fetch session information
   const session = await getServerSession(req, res, authOptions)

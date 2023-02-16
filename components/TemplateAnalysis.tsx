@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFileLines, faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import { useAppContext } from '../pages/_app'
 import { useFormBuilderContext } from '../pages/formbuilder'
-import { GoogleDocData } from '../pages/_app'
+import { GoogleDocData } from '../types/draftee'
 
 type Fields = {
     matches: string[],

@@ -1,30 +1,39 @@
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import { getToken } from "next-auth/jwt"
 import { NextApiResponse, NextApiRequest } from 'next'
-import getServerSession from "next-auth/next"
+import { getServerSession } from "next-auth/next"
 import { authOptions } from "../auth/[...nextauth]"
 import prisma from '../../../lib/prisma';
 
 // GET /api/user
 export default async function handler(req : NextApiRequest, res: NextApiResponse) {
 
-    // if (req.method === 'GET') {
-    //     //const token = await getToken({ req });
-    //     //const session = await getServerSession(req, res, authOptions)
-    //     //console.log(session)
-    //     const user = await prisma.user.findMany({
-    //         where: {
-    //             id: session?.userId,
-    //             //id: token.idToken
-    //         },
-    //         include: {
-    //             forms: true
-    //         }
-    //     })
-    //     console.log(user)
-    //     res.json(user);
-    // }
-    //console.log(req.body)
+    if (req.method === 'GET') {
+        //Check for active session
+        const session = await getServerSession(req, res, authOptions)
+        if(!session) {
+            res.status(401).json({error: 'Unauthorized'})
+            return
+        }
+
+        //Get a user and thier accounts, account holds the access_token (next-auth providers: Google, Apple etc)
+        const prismaUser = await prisma.user.findUnique({
+            where: {
+                email: session.user.email
+            },
+            include: {
+                accounts: true,
+            }
+        })
+        //Check if user exists
+        if(!prismaUser) {
+            res.status(401).json({error: 'Unauthorized, user not found'})
+        }
+
+        //Get the Google Provider access token
+        const account = prismaUser.accounts.find(acc => acc.provider === "google")
+        res.status(201).json(account.access_token);
+
+        return
+    }
 
     res.json({ message: "this route cannot handle this request." })
 }

@@ -1,22 +1,22 @@
-import { getSession} from "next-auth/react"
+import { getSession } from "next-auth/react"
 import { useRef, useState } from "react"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons'
 import { useRouter } from 'next/router'
-import { useAppContext }  from '../pages/_app'
+import { useAppContext } from '../pages/_app'
 
 const GDocUploader = () => {
 
     const router = useRouter()
     const inputRef = useRef(null)
-    const [error, setError] = useState({message: null})
+    const [error, setError] = useState({ message: null })
     const [loading, setLoading] = useState(false)
     const { setGdoc, setActiveModal, setModalToggle } = useAppContext()
 
     const activeError = `
         absolute top-56
         flex flex-row justify-between place-items-center                     
-        w-full h-14 p-4 mx-auto
+        w-full h-auto p-4 mx-auto
         bg-yellow-100 border-yellow-300 opacity-100 
         border-2 rounded-lg 
         transition-opacity ease-in duration-1000
@@ -33,65 +33,62 @@ const GDocUploader = () => {
 
     const handleGdocSubmit = async () => {
 
-        const session  = await getSession()
+        const session = await getSession()
 
-        console.log(session)
         setLoading(true)
         var userInput = inputRef.current.value
 
-        //Guardian Clauses
-        if(!userInput) { 
-            setError({message: 'Oof. The box above is empty 🤷'})
-            setLoading(false)
-            return 
-        }
-        if(!session) { 
-            setError({message: 'You need to login in to google first ☝️'}) 
+        //Check if input is empty
+        if (!userInput) {
+            setError({ message: 'Oof. The box above is empty 🤷' })
             setLoading(false)
             return
-         }
-        if(!session.accessToken) { 
-            setError({message: 'Try Signing out, then Sign in again'})
-            console.log(session)
+        }
+        //Check if user is logged in
+        if (!session) {
+            setError({ message: 'You need to login in to google first ☝️' })
             setLoading(false)
             return
         }
 
+        //Request a google docs access_token
+        const access_token = await (await fetch(`/api/user/`)).json()
+
+        //Check if request for access_token is successful
+        if (!access_token) {
+            setError({ message: 'No Access token, access denied' })
+            setLoading(false)
+            return
+        }
+
+        //Match a GoogleDocs URL
         const regex = /\/document\/d\/([a-zA-Z0-9-_]+)/
         var baseURL = 'https://docs.googleapis.com/v1/documents/'
         var documentId = regex.exec(userInput)
 
-        fetch(baseURL + documentId[1], {
+        //Ask google for a users Google Doc
+        const response = await fetch(baseURL + documentId[1], {
             method: 'GET',
             headers: new Headers({
-                'Authorization': 'Bearer ' + session.accessToken
+                'Authorization': 'Bearer ' + access_token
             })
         })
-            .then(res => {
-                console.log(res)
-                if(!res.ok) { 
-                    setError({message: 'Try Signing out, then Sign in again'}); 
-                    setLoading(false)
-                    return 
-                }
-                return res.json()
-            })
-            .then(doc => {
-                //console.log(doc)
-                setGdoc(doc)
-                //console.log(session)
-                //Check if we are already on the formbuilder page
-                if(router.pathname !== '/formbuilder') {
-                    router.push('/formbuilder')
-                }
-                setActiveModal('Analysis')
-                setModalToggle(true)
-            })
-            .catch(err => {
-                console.log(err)
-                setError({message: "Something went wrong"})
-                setLoading(false)
-            })
+
+        //If Google says no
+        if(!response.ok) {
+            setError({ message: `Google says: ${JSON.stringify(await response.json())}` });
+            setLoading(false)
+            return
+        }
+
+        //Otherwise, we successfully got a Google Doc
+        const doc = await response.json()
+        setGdoc(doc)
+        if (router.pathname !== '/formbuilder') {
+            router.push('/formbuilder')
+        }
+        setActiveModal('Analysis')
+        setModalToggle(true)
     }
 
     return (
@@ -103,11 +100,11 @@ const GDocUploader = () => {
                 required>
             </input>
             <button onClick={handleGdocSubmit} className="rounded-full transition ease-in-out delay-50 bg-gradient-to-r from-fuchsia-700 to-violet-700  text-white shadow-bump h-14 w-4/5 mb-8 mt-2 p-4 mx-auto" type="submit">
-                Submit <FontAwesomeIcon className={loading ? "animate-spin" : "hidden" } icon={faCircleNotch}/>
+                Submit <FontAwesomeIcon className={loading ? "animate-spin" : "hidden"} icon={faCircleNotch} />
             </button>
             <div className={error.message ? activeError : inactiveError}>
                 <span>{error.message}</span>
-                <button onClick={() => { setError({message: null})}}>X</button>
+                <button onClick={() => { setError({ message: null }) }}>X</button>
             </div>
         </div>
     )
