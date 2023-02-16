@@ -76,7 +76,7 @@ export default function Dashboard({ userdata }) {
         const form = await res.json()
 
         if (!form) {
-            console.log("There was error saving the form")
+            console.log("There was error retreiving the form")
             return
         }
 
