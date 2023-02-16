@@ -1,5 +1,5 @@
 import { useState, createContext, useContext } from 'react'
-import { useSession } from 'next-auth/react'
+import { useSession, signIn } from 'next-auth/react'
 import FormBuilder from '../components/FormBuilder'
 import TemplateAnalysis from '../components/TemplateAnalysis'
 import GDocUploader from '../components/GDocUploader'
@@ -22,13 +22,15 @@ export default function FormBuilderInterface() {
   const { setGdoc, setGdocData, activeModal, setActiveModal, modalToggle, setModalToggle } = useAppContext()
   const [formComponents, setFormComponents] = useState<FormComponent[]>([])
   const [formTitle, setFormTitle] = useState<string>("New Form")
-  const { data: session } = useSession()
+  const { data: session, status } = useSession()
   const router = useRouter()
 
   const handleFormSubmit = async (e) => {
     e.preventDefault()
-    //console.log(session)
-    //const content = JSON.stringify(formComponents)
+    if(status !== 'authenticated') {
+      signIn()
+      return
+    }
 
     const result = await fetch("http://localhost:3000/api/form", {
       method: 'POST',
