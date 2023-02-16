@@ -6,6 +6,9 @@ import GDocUploader from '../components/GDocUploader'
 import { useAppContext } from './_app'
 import { FormContent, FormComponent } from '../types/draftee'
 import { useRouter } from 'next/router'
+import { faCircleNotch } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 
 
 export const FormBuilderContext = createContext<FormContent>({
@@ -20,6 +23,7 @@ export const useFormBuilderContext = () => useContext(FormBuilderContext)
 export default function FormBuilderInterface() {
 
   const { setGdoc, setGdocData, activeModal, setActiveModal, modalToggle, setModalToggle } = useAppContext()
+  const [loading, setLoading] = useState(false)
   const [formComponents, setFormComponents] = useState<FormComponent[]>([])
   const [formTitle, setFormTitle] = useState<string>("New Form")
   const { data: session, status } = useSession()
@@ -27,6 +31,7 @@ export default function FormBuilderInterface() {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault()
+    setLoading(true)
     if(status !== 'authenticated') {
       signIn()
       return
@@ -41,8 +46,10 @@ export default function FormBuilderInterface() {
     })
 
     if(result.ok) {
+      setLoading(false)
       router.push('/dashboard')
     }
+    setLoading(false)
     //console.log(result)
   }
 
@@ -60,7 +67,7 @@ export default function FormBuilderInterface() {
       <div className="flex flex-row bg-slate-700 p-4">
         <button className="w-32 rounded-full bg-yellow-500" onClick={() => { setModalToggle(!modalToggle); setActiveModal('Upload') }}>Import new Google Doc</button>
         <button className="w-32 mx-4 rounded-full bg-red-500" onClick={() => { setFormComponents([]); setGdocData(null); setGdoc(null) }}>Clear Form</button>
-        <button className="w-32 rounded-full bg-green-500" onClick={(e) => { handleFormSubmit(e) }} >Save Form</button>
+        <button className="w-32 rounded-full bg-green-500" onClick={(e) => { handleFormSubmit(e) }} >Save Form <FontAwesomeIcon className={loading ? "animate-spin" : "hidden"} icon={faCircleNotch} /></button>
       </div>
 
       <FormBuilderContext.Provider value={{ formComponents, setFormComponents, formTitle, setFormTitle }}>
