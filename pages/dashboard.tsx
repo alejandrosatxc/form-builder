@@ -89,7 +89,19 @@ export default function Dashboard({ userdata }) {
             title: form.title,
             content: form.content,
         })
+    }
 
+    const handleFormDelete = async (formId: string) => {
+        const res = await fetch(`/api/form/${formId}`, {
+            method: 'DELETE'
+        })
+
+        const form = await res.json()
+
+        if (!form) {
+            console.log("There was error deleting the form")
+            return
+        }
     }
 
     return (
@@ -101,8 +113,10 @@ export default function Dashboard({ userdata }) {
                     {userdata.forms.length ?
                         userdata.forms.map((form: Form) => {
                             return (
-                                <li key={form.id} onClick={() => handleFormSelect(form.id)} className="m-6 w-32 hover:cursor-pointer">
-                                    <FontAwesomeIcon icon={faFileLines} size={'6x'} /><h3>{form.title}</h3>
+                                <li key={form.id} className="m-6 w-32 group hover:cursor-pointer">
+                                    <button onClick={() => {handleFormDelete(form.id)}} className="text-red-500 bg-red-800 rounded-full w-4 absolute self-end invisible group-hover:visible">X</button>
+                                    <FontAwesomeIcon onClick={() => handleFormSelect(form.id)} icon={faFileLines} size={'6x'} />
+                                    <h3>{form.title}</h3>
                                 </li>
                             )
                         })
